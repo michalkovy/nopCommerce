@@ -4894,3 +4894,19 @@ GO
  	VALUES (N'catalogsettings.exportimportproductattributes', N'True', 0)
  END
  GO
+ 
+ --new setting
+IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [name] = N'producteditorsettings.productattributes')
+BEGIN
+	INSERT [Setting] ([Name], [Value], [StoreId])
+	VALUES (N'producteditorsettings.productattributes', N'true', 0)
+END
+GO
+
+--new setting
+IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [name] = N'producteditorsettings.specificationattributes')
+BEGIN
+	INSERT [Setting] ([Name], [Value], [StoreId])
+	VALUES (N'producteditorsettings.specificationattributes', N'true', 0)
+END
+GO
