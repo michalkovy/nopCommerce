@@ -2158,6 +2158,9 @@ set @resources='
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.ProductEditor.SpecificationAttributes">
     <Value>Specification attributes</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.Settings.ProductEditor.Manufacturers">
+    <Value>Manufacturers</Value>
   </LocaleResource>  
 </Language>
 '
