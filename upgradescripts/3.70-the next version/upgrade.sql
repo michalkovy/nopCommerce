@@ -2153,6 +2153,12 @@ set @resources='
   <LocaleResource Name="Admin.Configuration.Settings.Catalog.ExportImportProductAttributes.Hint">
     <Value>Check if products should be exported/imported with product attributes</Value>
   </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.Settings.ProductEditor.ProductAttributes">
+    <Value>Product attributes</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.Settings.ProductEditor.SpecificationAttributes">
+    <Value>Specification attributes</Value>
+  </LocaleResource>  
 </Language>
 '
 
