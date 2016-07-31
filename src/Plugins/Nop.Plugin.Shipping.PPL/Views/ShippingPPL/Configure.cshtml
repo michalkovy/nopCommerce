@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "";
+}
+@model Nop.Plugin.Shipping.PPL.Models.PPLShippingModel
+@using Nop.Web.Framework;
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <table class="adminContent">
+        <tr>
+            <td colspan="2" width="100%">
+                <input type="submit" name="save" class="t-button" value="@T("Admin.Common.Save")" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" width="100%">
+                <button type="submit" name="updateOrders" value="updateOrders" class="t-button">
+                    @T("Plugins.Shipping.PPL.UpdateOrders")
+                            </button>
+            </td>
+        </tr>
+    </table>    
+}

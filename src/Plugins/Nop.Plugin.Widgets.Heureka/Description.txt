@@ -1,0 +1,8 @@
+﻿Group: Widgets
+FriendlyName: Heureka
+SystemName: Widgets.Heureka
+Version: 1.00
+SupportedVersions: 3.70
+Author: Michal Kovac
+DisplayOrder: 1
+FileName: Nop.Plugin.Widgets.Heureka.dll

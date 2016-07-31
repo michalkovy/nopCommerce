@@ -1,0 +1,8 @@
+﻿Group: Misc
+FriendlyName: Web Importer
+SystemName: Misc.WebImporter
+Version: 1.00
+SupportedVersions: 3.70
+Author: Michal Kovac
+DisplayOrder: 1
+FileName: Nop.Plugin.Misc.WebImporter.dll

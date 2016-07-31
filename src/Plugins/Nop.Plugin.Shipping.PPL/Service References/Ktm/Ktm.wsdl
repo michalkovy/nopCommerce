@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://KTM/ASM/Ktm.asmx" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://KTM/ASM/Ktm.asmx" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://KTM/ASM/Ktm.asmx">
+      <s:element name="GetKTMDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="customerID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerDepID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KTMID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetKTMDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetKTMDetailResult" type="tns:KTMDetail" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="KTMDetail">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="gpsN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="gpsE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="position" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="openTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="qrCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="customerName1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="customerName2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KTMID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="countryId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="street1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zipCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="customerId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="customerDepId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetKTMList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetKTMListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetKTMListResult" type="tns:ArrayOfKTMDetail" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfKTMDetail">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="KTMDetail" nillable="true" type="tns:KTMDetail" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllKTMList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllKTMListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllKTMListResult" type="tns:ArrayOfKTMDetail" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KTMDetail" nillable="true" type="tns:KTMDetail" />
+      <s:element name="ArrayOfKTMDetail" nillable="true" type="tns:ArrayOfKTMDetail" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetKTMDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetKTMDetail" />
+  </wsdl:message>
+  <wsdl:message name="GetKTMDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetKTMDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetKTMListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetKTMList" />
+  </wsdl:message>
+  <wsdl:message name="GetKTMListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetKTMListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllKTMListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllKTMList" />
+  </wsdl:message>
+  <wsdl:message name="GetAllKTMListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllKTMListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetKTMDetailHttpGetIn">
+    <wsdl:part name="customerID" type="s:string" />
+    <wsdl:part name="customerDepID" type="s:string" />
+    <wsdl:part name="KTMID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetKTMDetailHttpGetOut">
+    <wsdl:part name="Body" element="tns:KTMDetail" />
+  </wsdl:message>
+  <wsdl:message name="GetKTMListHttpGetIn" />
+  <wsdl:message name="GetKTMListHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfKTMDetail" />
+  </wsdl:message>
+  <wsdl:message name="GetAllKTMListHttpGetIn" />
+  <wsdl:message name="GetAllKTMListHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfKTMDetail" />
+  </wsdl:message>
+  <wsdl:message name="GetKTMDetailHttpPostIn">
+    <wsdl:part name="customerID" type="s:string" />
+    <wsdl:part name="customerDepID" type="s:string" />
+    <wsdl:part name="KTMID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetKTMDetailHttpPostOut">
+    <wsdl:part name="Body" element="tns:KTMDetail" />
+  </wsdl:message>
+  <wsdl:message name="GetKTMListHttpPostIn" />
+  <wsdl:message name="GetKTMListHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfKTMDetail" />
+  </wsdl:message>
+  <wsdl:message name="GetAllKTMListHttpPostIn" />
+  <wsdl:message name="GetAllKTMListHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfKTMDetail" />
+  </wsdl:message>
+  <wsdl:portType name="KtmSoap">
+    <wsdl:operation name="GetKTMDetail">
+      <wsdl:input message="tns:GetKTMDetailSoapIn" />
+      <wsdl:output message="tns:GetKTMDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKTMList">
+      <wsdl:input message="tns:GetKTMListSoapIn" />
+      <wsdl:output message="tns:GetKTMListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllKTMList">
+      <wsdl:input message="tns:GetAllKTMListSoapIn" />
+      <wsdl:output message="tns:GetAllKTMListSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="KtmHttpGet">
+    <wsdl:operation name="GetKTMDetail">
+      <wsdl:input message="tns:GetKTMDetailHttpGetIn" />
+      <wsdl:output message="tns:GetKTMDetailHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKTMList">
+      <wsdl:input message="tns:GetKTMListHttpGetIn" />
+      <wsdl:output message="tns:GetKTMListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllKTMList">
+      <wsdl:input message="tns:GetAllKTMListHttpGetIn" />
+      <wsdl:output message="tns:GetAllKTMListHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="KtmHttpPost">
+    <wsdl:operation name="GetKTMDetail">
+      <wsdl:input message="tns:GetKTMDetailHttpPostIn" />
+      <wsdl:output message="tns:GetKTMDetailHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetKTMList">
+      <wsdl:input message="tns:GetKTMListHttpPostIn" />
+      <wsdl:output message="tns:GetKTMListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllKTMList">
+      <wsdl:input message="tns:GetAllKTMListHttpPostIn" />
+      <wsdl:output message="tns:GetAllKTMListHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="KtmSoap" type="tns:KtmSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetKTMDetail">
+      <soap:operation soapAction="http://KTM/ASM/Ktm.asmx/GetKTMDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKTMList">
+      <soap:operation soapAction="http://KTM/ASM/Ktm.asmx/GetKTMList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllKTMList">
+      <soap:operation soapAction="http://KTM/ASM/Ktm.asmx/GetAllKTMList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="KtmSoap12" type="tns:KtmSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetKTMDetail">
+      <soap12:operation soapAction="http://KTM/ASM/Ktm.asmx/GetKTMDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKTMList">
+      <soap12:operation soapAction="http://KTM/ASM/Ktm.asmx/GetKTMList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllKTMList">
+      <soap12:operation soapAction="http://KTM/ASM/Ktm.asmx/GetAllKTMList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="KtmHttpGet" type="tns:KtmHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetKTMDetail">
+      <http:operation location="/GetKTMDetail" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKTMList">
+      <http:operation location="/GetKTMList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllKTMList">
+      <http:operation location="/GetAllKTMList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="KtmHttpPost" type="tns:KtmHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetKTMDetail">
+      <http:operation location="/GetKTMDetail" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetKTMList">
+      <http:operation location="/GetKTMList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllKTMList">
+      <http:operation location="/GetAllKTMList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Ktm">
+    <wsdl:port name="KtmSoap" binding="tns:KtmSoap">
+      <soap:address location="http://www.pplbalik.cz/ASM/Ktm.asmx" />
+    </wsdl:port>
+    <wsdl:port name="KtmSoap12" binding="tns:KtmSoap12">
+      <soap12:address location="http://www.pplbalik.cz/ASM/Ktm.asmx" />
+    </wsdl:port>
+    <wsdl:port name="KtmHttpGet" binding="tns:KtmHttpGet">
+      <http:address location="http://www.pplbalik.cz/ASM/Ktm.asmx" />
+    </wsdl:port>
+    <wsdl:port name="KtmHttpPost" binding="tns:KtmHttpPost">
+      <http:address location="http://www.pplbalik.cz/ASM/Ktm.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<winstrom xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <adresar>
+    <id>ext:CIN:C212041</id>
+    <nazev>Nespresso</nazev>
+    <ulice>pařížská 10</ulice>
+    <mesto>Praha 1</mesto>
+    <psc>11000</psc>
+    <tel>602327460</tel>
+    <email>andrea.kobesova@centrum.cz</email>
+    <stat>code:CZ</stat>
+    <postovniShodna>true</postovniShodna>
+    <platceDph>false</platceDph>
+    <typVztahuK>typVztahu.odberatel</typVztahuK>
+  </adresar>
+</winstrom>

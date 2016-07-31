@@ -1,0 +1,1803 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="PPLIEGate" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="PPLIEGate/AbstractTypes" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="PPLIEGate" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Webová služba pro import zásilek a objednávek přepravy.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="PPLIEGate">
+      <s:element name="ImportPPLSprint">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="packages" type="tns:colPPLSprint" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="colPPLSprint">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfAnyType" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="City">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Region" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Post" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Reject" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Package">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PackageID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PackageIDCUS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodPrice" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodPriceCurID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VarSym" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConsigneeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConsigneeStreet" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConsigneeCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Contact" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EveningDelivery" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustRef" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Length" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Height" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Width" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecMail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsuranceValue" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PackageEsyco">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PackageID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodPrice" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="VarSym" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecSymbol" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConsigneeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConsigneeStreet" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConsigneeCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PackageWeighed">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PackageID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PackageIDCUS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InputDestination" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OutputDestination" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Weight" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="PriceCurID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConsigneeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConsigneeStreet" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConsigneeCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VarSym" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecSymbol" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateDelivFrom" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateDelivTo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Contact" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustRef" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EveningDelivery" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Length" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Height" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Width" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecMail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsuranceValue" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PackageHoffmann">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PackageID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Weight" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConsigneeName1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConsigneeName2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConsigneeName3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConsigneeName4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConsigneeStreet" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConsigneeCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VarSym" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PackageToList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PackageID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Weight" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="ToDelivDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecStreet" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecZipCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cod" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodPrice" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ZipCode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Post" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Depot" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Destination" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Visual" type="s:unsignedByte" />
+          <s:element minOccurs="1" maxOccurs="1" name="EveningDelivery" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PPLSprint">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PackageIdPPL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DCOD" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PackageType" type="s:unsignedByte" />
+          <s:element minOccurs="1" maxOccurs="1" name="PickupDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="PickupTimeFrom" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PickupTimeTo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DelivTimeFrom" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DelivTimeTo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CountOfEuroPal" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryTerms" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GoodsDesc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustRef" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Insurance" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InsuranceValue" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodValue" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodVarCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendStreet" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendZipCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendContact" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendPhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendOrgId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendOrgVatId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecStreet" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecZipCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecContact" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecPhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecOrgId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecOrgVatId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EurBack" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LatePickup" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Stock" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ThirdDeliv" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="POD" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SaturdayDeliv" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="OutWorkTime" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="OutWorkTimePickup" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CrgManId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PayOnDelivery" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocBack" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ADR" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdPri" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocBackID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EveningDelivery" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="FloorHandling" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="OldGoodsBack" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecSymbol" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PackageItems" type="tns:ArrayOfPPLSprintItem" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPPLSprintItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PPLSprintItem" nillable="true" type="tns:PPLSprintItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PPLSprintItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="LPNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CaseDescription" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Weight" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Length" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ImportPPLSprintResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="packages" type="tns:colPPLSprint" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetZipCodes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Changed" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfZipCode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ZipCode" nillable="true" type="tns:ZipCode" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetZipCodesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetZipCodesResult" type="tns:ArrayOfZipCode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCities">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Date_From" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="City" nillable="true" type="tns:City" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCitiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCitiesResult" type="tns:ArrayOfCity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCitiesCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Date_From" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCitiesCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCitiesCountResult" type="tns:ArrayOfCity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IS_ONLINE">
+        <s:complexType />
+      </s:element>
+      <s:element name="IS_ONLINEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IS_ONLINEResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPackagesInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PackageID" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustReference" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PackageInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PackageID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PackageIDCus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InputDepoCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InputDepoName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OutputDepoCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OutputDepoName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecZipCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecCity" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Weight" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateInputDepo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateWeighed" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateCentral" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateOutputDepo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateNotDeliv" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NotDelivCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NotDelivName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateDeliv" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DelivPerson" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateExport" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateImport" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InputCountry" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OutputCountry" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReturnToSender" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendInfo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CardPay" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EveningDelivery" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoadingDate" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodPrice" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateTakeMoney" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateMoneyToBank" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateMoneyToCustomer" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPackageInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PackageInfo" nillable="true" type="tns:PackageInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPackagesInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPackagesInfoResult" type="tns:ArrayOfPackageInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPackageToDelivery">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DateToDeliv" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="colPackage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfAnyType" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPackageToDeliveryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPackageToDeliveryResult" type="tns:colPackage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPackageInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PackageID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPackageInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPackageInfoResult" type="tns:PackageInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportOrderExt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="order" type="tns:Order" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Order">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OrdNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CountPack" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendStreet" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendZipCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendContact" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendPhone" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendDateFrom" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendDateTo" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendCountry" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecStreet" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecZipCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecContact" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecPhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecCountry" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ImportOrderExtResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="order" type="tns:Order" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportOrdersExt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Orders" type="tns:colOrder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="colOrder">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfAnyType" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ImportOrdersExtResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Orders" type="tns:colOrder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportPackageExt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pack" type="tns:Package" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportPackageExtResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pack" type="tns:Package" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportPackagesExt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Packages" type="tns:colPackage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportPackagesExtResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Packages" type="tns:colPackage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportPackages">
+        <s:complexType />
+      </s:element>
+      <s:element name="ImportPackagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ImportPackagesResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportOrders">
+        <s:complexType />
+      </s:element>
+      <s:element name="ImportOrdersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ImportOrdersResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportWeighedPack">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pack" type="tns:PackageWeighed" />
+            <s:element minOccurs="0" maxOccurs="1" name="DepID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportWeighedPackResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pack" type="tns:PackageWeighed" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportWeighedPackages">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Packages" type="tns:colPackageWeighed" />
+            <s:element minOccurs="0" maxOccurs="1" name="DepID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="colPackageWeighed">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfAnyType" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ImportWeighedPackagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Packages" type="tns:colPackageWeighed" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportPackagesHoffmann">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Packages" type="tns:colPackageHoffmann" />
+            <s:element minOccurs="0" maxOccurs="1" name="DepID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="colPackageHoffmann">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfAnyType" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ImportPackagesHoffmannResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Packages" type="tns:colPackageHoffmann" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportESYCOPack">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pack" type="tns:PackageEsyco" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportESYCOPackResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pack" type="tns:PackageEsyco" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportESYCOPackages">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Packages" type="tns:colPackage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportESYCOPackagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Packages" type="tns:colPackage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportStatusDHL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Stat" type="tns:StatusDHL" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StatusDHL">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PackageIDPPL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PackageIDExp" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZpID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ImportStatusDHLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Stat" type="tns:StatusDHL" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportStatusesDHL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Statuses" type="tns:colStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="colStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfAnyType" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ImportStatusesDHLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Statuses" type="tns:colStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportOrderCart">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="order" type="tns:OrderCart" />
+            <s:element minOccurs="1" maxOccurs="1" name="Accept" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OrderCart">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CountPack" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendStreet" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SendZipCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendDateFrom" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendDateTo" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ImportOrderCartResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="order" type="tns:OrderCart" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportOrdersCart">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FirCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Orders" type="tns:colOrderCart" />
+            <s:element minOccurs="1" maxOccurs="1" name="Accept" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="colOrderCart">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfAnyType" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ImportOrdersCartResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Orders" type="tns:colOrderCart" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArrayOfZipCode" nillable="true" type="tns:ArrayOfZipCode" />
+      <s:element name="ArrayOfCity" nillable="true" type="tns:ArrayOfCity" />
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="ArrayOfPackageInfo" nillable="true" type="tns:ArrayOfPackageInfo" />
+      <s:element name="colPackage" nillable="true" type="tns:colPackage" />
+      <s:element name="PackageInfo" nillable="true" type="tns:PackageInfo" />
+    </s:schema>
+    <s:schema targetNamespace="PPLIEGate/AbstractTypes">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:complexType name="StringArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="unbounded" name="String" type="s:string" />
+            </s:sequence>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ImportPPLSprintSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportPPLSprint" />
+  </wsdl:message>
+  <wsdl:message name="ImportPPLSprintSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportPPLSprintResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetZipCodesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetZipCodes" />
+  </wsdl:message>
+  <wsdl:message name="GetZipCodesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetZipCodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCities" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCitiesCount" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCitiesCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IS_ONLINESoapIn">
+    <wsdl:part name="parameters" element="tns:IS_ONLINE" />
+  </wsdl:message>
+  <wsdl:message name="IS_ONLINESoapOut">
+    <wsdl:part name="parameters" element="tns:IS_ONLINEResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPackagesInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPackagesInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetPackagesInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPackagesInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPackageToDeliverySoapIn">
+    <wsdl:part name="parameters" element="tns:GetPackageToDelivery" />
+  </wsdl:message>
+  <wsdl:message name="GetPackageToDeliverySoapOut">
+    <wsdl:part name="parameters" element="tns:GetPackageToDeliveryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPackageInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPackageInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetPackageInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPackageInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportOrderExtSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportOrderExt" />
+  </wsdl:message>
+  <wsdl:message name="ImportOrderExtSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportOrderExtResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportOrdersExtSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportOrdersExt" />
+  </wsdl:message>
+  <wsdl:message name="ImportOrdersExtSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportOrdersExtResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportPackageExtSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportPackageExt" />
+  </wsdl:message>
+  <wsdl:message name="ImportPackageExtSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportPackageExtResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportPackagesExtSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportPackagesExt" />
+  </wsdl:message>
+  <wsdl:message name="ImportPackagesExtSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportPackagesExtResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportPackagesSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportPackages" />
+  </wsdl:message>
+  <wsdl:message name="ImportPackagesSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportPackagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportOrdersSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportOrders" />
+  </wsdl:message>
+  <wsdl:message name="ImportOrdersSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportWeighedPackSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportWeighedPack" />
+  </wsdl:message>
+  <wsdl:message name="ImportWeighedPackSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportWeighedPackResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportWeighedPackagesSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportWeighedPackages" />
+  </wsdl:message>
+  <wsdl:message name="ImportWeighedPackagesSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportWeighedPackagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportPackagesHoffmannSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportPackagesHoffmann" />
+  </wsdl:message>
+  <wsdl:message name="ImportPackagesHoffmannSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportPackagesHoffmannResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportESYCOPackSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportESYCOPack" />
+  </wsdl:message>
+  <wsdl:message name="ImportESYCOPackSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportESYCOPackResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportESYCOPackagesSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportESYCOPackages" />
+  </wsdl:message>
+  <wsdl:message name="ImportESYCOPackagesSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportESYCOPackagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportStatusDHLSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportStatusDHL" />
+  </wsdl:message>
+  <wsdl:message name="ImportStatusDHLSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportStatusDHLResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportStatusesDHLSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportStatusesDHL" />
+  </wsdl:message>
+  <wsdl:message name="ImportStatusesDHLSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportStatusesDHLResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportOrderCartSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportOrderCart" />
+  </wsdl:message>
+  <wsdl:message name="ImportOrderCartSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportOrderCartResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportOrdersCartSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportOrdersCart" />
+  </wsdl:message>
+  <wsdl:message name="ImportOrdersCartSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportOrdersCartResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetZipCodesHttpGetIn">
+    <wsdl:part name="FirCode" type="s:string" />
+    <wsdl:part name="Changed" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetZipCodesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfZipCode" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesHttpGetIn">
+    <wsdl:part name="FirCode" type="s:string" />
+    <wsdl:part name="Date_From" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCity" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesCountHttpGetIn">
+    <wsdl:part name="FirCode" type="s:string" />
+    <wsdl:part name="Date_From" type="s:string" />
+    <wsdl:part name="Country" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesCountHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCity" />
+  </wsdl:message>
+  <wsdl:message name="IS_ONLINEHttpGetIn" />
+  <wsdl:message name="IS_ONLINEHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPackagesInfoHttpGetIn">
+    <wsdl:part name="FirCode" type="s:string" />
+    <wsdl:part name="PackageID" type="s1:StringArray" />
+    <wsdl:part name="CustReference" type="s1:StringArray" />
+  </wsdl:message>
+  <wsdl:message name="GetPackagesInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPackageInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetPackageToDeliveryHttpGetIn">
+    <wsdl:part name="FirCode" type="s:string" />
+    <wsdl:part name="DateToDeliv" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPackageToDeliveryHttpGetOut">
+    <wsdl:part name="Body" element="tns:colPackage" />
+  </wsdl:message>
+  <wsdl:message name="GetPackageInfoHttpGetIn">
+    <wsdl:part name="PackageID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPackageInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:PackageInfo" />
+  </wsdl:message>
+  <wsdl:message name="ImportPackagesHttpGetIn" />
+  <wsdl:message name="ImportPackagesHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="ImportOrdersHttpGetIn" />
+  <wsdl:message name="ImportOrdersHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="GetZipCodesHttpPostIn">
+    <wsdl:part name="FirCode" type="s:string" />
+    <wsdl:part name="Changed" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetZipCodesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfZipCode" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesHttpPostIn">
+    <wsdl:part name="FirCode" type="s:string" />
+    <wsdl:part name="Date_From" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCity" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesCountHttpPostIn">
+    <wsdl:part name="FirCode" type="s:string" />
+    <wsdl:part name="Date_From" type="s:string" />
+    <wsdl:part name="Country" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesCountHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCity" />
+  </wsdl:message>
+  <wsdl:message name="IS_ONLINEHttpPostIn" />
+  <wsdl:message name="IS_ONLINEHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPackagesInfoHttpPostIn">
+    <wsdl:part name="FirCode" type="s:string" />
+    <wsdl:part name="PackageID" type="s1:StringArray" />
+    <wsdl:part name="CustReference" type="s1:StringArray" />
+  </wsdl:message>
+  <wsdl:message name="GetPackagesInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfPackageInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetPackageToDeliveryHttpPostIn">
+    <wsdl:part name="FirCode" type="s:string" />
+    <wsdl:part name="DateToDeliv" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPackageToDeliveryHttpPostOut">
+    <wsdl:part name="Body" element="tns:colPackage" />
+  </wsdl:message>
+  <wsdl:message name="GetPackageInfoHttpPostIn">
+    <wsdl:part name="PackageID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPackageInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:PackageInfo" />
+  </wsdl:message>
+  <wsdl:message name="ImportPackagesHttpPostIn" />
+  <wsdl:message name="ImportPackagesHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="ImportOrdersHttpPostIn" />
+  <wsdl:message name="ImportOrdersHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:portType name="IEGateSoap">
+    <wsdl:operation name="ImportPPLSprint">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Import zásilek PPL Sprint.</wsdl:documentation>
+      <wsdl:input message="tns:ImportPPLSprintSoapIn" />
+      <wsdl:output message="tns:ImportPPLSprintSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZipCodes">
+      <wsdl:input message="tns:GetZipCodesSoapIn" />
+      <wsdl:output message="tns:GetZipCodesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCities">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Vrací seznam obcí.</wsdl:documentation>
+      <wsdl:input message="tns:GetCitiesSoapIn" />
+      <wsdl:output message="tns:GetCitiesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCitiesCount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Vrací seznam obcí.</wsdl:documentation>
+      <wsdl:input message="tns:GetCitiesCountSoapIn" />
+      <wsdl:output message="tns:GetCitiesCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IS_ONLINE">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Test online IE IEGATE.</wsdl:documentation>
+      <wsdl:input message="tns:IS_ONLINESoapIn" />
+      <wsdl:output message="tns:IS_ONLINESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPackagesInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Vrací seznam informací o zásilkách.</wsdl:documentation>
+      <wsdl:input message="tns:GetPackagesInfoSoapIn" />
+      <wsdl:output message="tns:GetPackagesInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPackageToDelivery">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Seznam zásilek připravených na rozvoz.</wsdl:documentation>
+      <wsdl:input message="tns:GetPackageToDeliverySoapIn" />
+      <wsdl:output message="tns:GetPackageToDeliverySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPackageInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Informace o zásilce.</wsdl:documentation>
+      <wsdl:input message="tns:GetPackageInfoSoapIn" />
+      <wsdl:output message="tns:GetPackageInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrderExt">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Rozšířený import objednávky.</wsdl:documentation>
+      <wsdl:input message="tns:ImportOrderExtSoapIn" />
+      <wsdl:output message="tns:ImportOrderExtSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrdersExt">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Rozšířený import více objednávek.</wsdl:documentation>
+      <wsdl:input message="tns:ImportOrdersExtSoapIn" />
+      <wsdl:output message="tns:ImportOrdersExtSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportPackageExt">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Rozšířený import zásilky.</wsdl:documentation>
+      <wsdl:input message="tns:ImportPackageExtSoapIn" />
+      <wsdl:output message="tns:ImportPackageExtSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportPackagesExt">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Rozšířený import více zásilek.</wsdl:documentation>
+      <wsdl:input message="tns:ImportPackagesExtSoapIn" />
+      <wsdl:output message="tns:ImportPackagesExtSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportPackages">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Import zásilek.</wsdl:documentation>
+      <wsdl:input message="tns:ImportPackagesSoapIn" />
+      <wsdl:output message="tns:ImportPackagesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrders">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Import objednávek.</wsdl:documentation>
+      <wsdl:input message="tns:ImportOrdersSoapIn" />
+      <wsdl:output message="tns:ImportOrdersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportWeighedPack">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Import zvážené zásilky.</wsdl:documentation>
+      <wsdl:input message="tns:ImportWeighedPackSoapIn" />
+      <wsdl:output message="tns:ImportWeighedPackSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportWeighedPackages">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Import více zvážených zásilek.</wsdl:documentation>
+      <wsdl:input message="tns:ImportWeighedPackagesSoapIn" />
+      <wsdl:output message="tns:ImportWeighedPackagesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportPackagesHoffmann">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Import zásilek firmy Hoffmann.</wsdl:documentation>
+      <wsdl:input message="tns:ImportPackagesHoffmannSoapIn" />
+      <wsdl:output message="tns:ImportPackagesHoffmannSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportESYCOPack">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Import zásilky z ESYCA.</wsdl:documentation>
+      <wsdl:input message="tns:ImportESYCOPackSoapIn" />
+      <wsdl:output message="tns:ImportESYCOPackSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportESYCOPackages">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Import více zásilek z ESYCA.</wsdl:documentation>
+      <wsdl:input message="tns:ImportESYCOPackagesSoapIn" />
+      <wsdl:output message="tns:ImportESYCOPackagesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportStatusDHL">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Import statusu DHL.</wsdl:documentation>
+      <wsdl:input message="tns:ImportStatusDHLSoapIn" />
+      <wsdl:output message="tns:ImportStatusDHLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportStatusesDHL">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Import více statusů DHL.</wsdl:documentation>
+      <wsdl:input message="tns:ImportStatusesDHLSoapIn" />
+      <wsdl:output message="tns:ImportStatusesDHLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrderCart">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Import objednávky svozu.</wsdl:documentation>
+      <wsdl:input message="tns:ImportOrderCartSoapIn" />
+      <wsdl:output message="tns:ImportOrderCartSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrdersCart">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Rozšířený import více objednávek svozu.</wsdl:documentation>
+      <wsdl:input message="tns:ImportOrdersCartSoapIn" />
+      <wsdl:output message="tns:ImportOrdersCartSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IEGateHttpGet">
+    <wsdl:operation name="GetZipCodes">
+      <wsdl:input message="tns:GetZipCodesHttpGetIn" />
+      <wsdl:output message="tns:GetZipCodesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCities">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Vrací seznam obcí.</wsdl:documentation>
+      <wsdl:input message="tns:GetCitiesHttpGetIn" />
+      <wsdl:output message="tns:GetCitiesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCitiesCount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Vrací seznam obcí.</wsdl:documentation>
+      <wsdl:input message="tns:GetCitiesCountHttpGetIn" />
+      <wsdl:output message="tns:GetCitiesCountHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IS_ONLINE">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Test online IE IEGATE.</wsdl:documentation>
+      <wsdl:input message="tns:IS_ONLINEHttpGetIn" />
+      <wsdl:output message="tns:IS_ONLINEHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPackagesInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Vrací seznam informací o zásilkách.</wsdl:documentation>
+      <wsdl:input message="tns:GetPackagesInfoHttpGetIn" />
+      <wsdl:output message="tns:GetPackagesInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPackageToDelivery">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Seznam zásilek připravených na rozvoz.</wsdl:documentation>
+      <wsdl:input message="tns:GetPackageToDeliveryHttpGetIn" />
+      <wsdl:output message="tns:GetPackageToDeliveryHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPackageInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Informace o zásilce.</wsdl:documentation>
+      <wsdl:input message="tns:GetPackageInfoHttpGetIn" />
+      <wsdl:output message="tns:GetPackageInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportPackages">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Import zásilek.</wsdl:documentation>
+      <wsdl:input message="tns:ImportPackagesHttpGetIn" />
+      <wsdl:output message="tns:ImportPackagesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrders">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Import objednávek.</wsdl:documentation>
+      <wsdl:input message="tns:ImportOrdersHttpGetIn" />
+      <wsdl:output message="tns:ImportOrdersHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IEGateHttpPost">
+    <wsdl:operation name="GetZipCodes">
+      <wsdl:input message="tns:GetZipCodesHttpPostIn" />
+      <wsdl:output message="tns:GetZipCodesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCities">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Vrací seznam obcí.</wsdl:documentation>
+      <wsdl:input message="tns:GetCitiesHttpPostIn" />
+      <wsdl:output message="tns:GetCitiesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCitiesCount">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Vrací seznam obcí.</wsdl:documentation>
+      <wsdl:input message="tns:GetCitiesCountHttpPostIn" />
+      <wsdl:output message="tns:GetCitiesCountHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IS_ONLINE">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Test online IE IEGATE.</wsdl:documentation>
+      <wsdl:input message="tns:IS_ONLINEHttpPostIn" />
+      <wsdl:output message="tns:IS_ONLINEHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPackagesInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Vrací seznam informací o zásilkách.</wsdl:documentation>
+      <wsdl:input message="tns:GetPackagesInfoHttpPostIn" />
+      <wsdl:output message="tns:GetPackagesInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPackageToDelivery">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Seznam zásilek připravených na rozvoz.</wsdl:documentation>
+      <wsdl:input message="tns:GetPackageToDeliveryHttpPostIn" />
+      <wsdl:output message="tns:GetPackageToDeliveryHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPackageInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Informace o zásilce.</wsdl:documentation>
+      <wsdl:input message="tns:GetPackageInfoHttpPostIn" />
+      <wsdl:output message="tns:GetPackageInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportPackages">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Import zásilek.</wsdl:documentation>
+      <wsdl:input message="tns:ImportPackagesHttpPostIn" />
+      <wsdl:output message="tns:ImportPackagesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrders">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Import objednávek.</wsdl:documentation>
+      <wsdl:input message="tns:ImportOrdersHttpPostIn" />
+      <wsdl:output message="tns:ImportOrdersHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IEGateSoap" type="tns:IEGateSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ImportPPLSprint">
+      <soap:operation soapAction="PPLIEGate/ImportPPLSprint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZipCodes">
+      <soap:operation soapAction="PPLIEGate/GetZipCodes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCities">
+      <soap:operation soapAction="PPLIEGate/GetCities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCitiesCount">
+      <soap:operation soapAction="PPLIEGate/GetCitiesCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IS_ONLINE">
+      <soap:operation soapAction="PPLIEGate/IS_ONLINE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPackagesInfo">
+      <soap:operation soapAction="PPLIEGate/GetPackagesInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPackageToDelivery">
+      <soap:operation soapAction="PPLIEGate/GetPackageToDelivery" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPackageInfo">
+      <soap:operation soapAction="PPLIEGate/GetPackageInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrderExt">
+      <soap:operation soapAction="PPLIEGate/ImportOrderExt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrdersExt">
+      <soap:operation soapAction="PPLIEGate/ImportOrdersExt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportPackageExt">
+      <soap:operation soapAction="PPLIEGate/ImportPackageExt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportPackagesExt">
+      <soap:operation soapAction="PPLIEGate/ImportPackagesExt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportPackages">
+      <soap:operation soapAction="PPLIEGate/ImportPackages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrders">
+      <soap:operation soapAction="PPLIEGate/ImportOrders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportWeighedPack">
+      <soap:operation soapAction="PPLIEGate/ImportWeighedPack" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportWeighedPackages">
+      <soap:operation soapAction="PPLIEGate/ImportWeighedPackages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportPackagesHoffmann">
+      <soap:operation soapAction="PPLIEGate/ImportPackagesHoffmann" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportESYCOPack">
+      <soap:operation soapAction="PPLIEGate/ImportESYCOPack" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportESYCOPackages">
+      <soap:operation soapAction="PPLIEGate/ImportESYCOPackages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportStatusDHL">
+      <soap:operation soapAction="PPLIEGate/ImportStatusDHL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportStatusesDHL">
+      <soap:operation soapAction="PPLIEGate/ImportStatusesDHL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrderCart">
+      <soap:operation soapAction="PPLIEGate/ImportOrderCart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrdersCart">
+      <soap:operation soapAction="PPLIEGate/ImportOrdersCart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IEGateSoap12" type="tns:IEGateSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ImportPPLSprint">
+      <soap12:operation soapAction="PPLIEGate/ImportPPLSprint" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZipCodes">
+      <soap12:operation soapAction="PPLIEGate/GetZipCodes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCities">
+      <soap12:operation soapAction="PPLIEGate/GetCities" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCitiesCount">
+      <soap12:operation soapAction="PPLIEGate/GetCitiesCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IS_ONLINE">
+      <soap12:operation soapAction="PPLIEGate/IS_ONLINE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPackagesInfo">
+      <soap12:operation soapAction="PPLIEGate/GetPackagesInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPackageToDelivery">
+      <soap12:operation soapAction="PPLIEGate/GetPackageToDelivery" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPackageInfo">
+      <soap12:operation soapAction="PPLIEGate/GetPackageInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrderExt">
+      <soap12:operation soapAction="PPLIEGate/ImportOrderExt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrdersExt">
+      <soap12:operation soapAction="PPLIEGate/ImportOrdersExt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportPackageExt">
+      <soap12:operation soapAction="PPLIEGate/ImportPackageExt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportPackagesExt">
+      <soap12:operation soapAction="PPLIEGate/ImportPackagesExt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportPackages">
+      <soap12:operation soapAction="PPLIEGate/ImportPackages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrders">
+      <soap12:operation soapAction="PPLIEGate/ImportOrders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportWeighedPack">
+      <soap12:operation soapAction="PPLIEGate/ImportWeighedPack" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportWeighedPackages">
+      <soap12:operation soapAction="PPLIEGate/ImportWeighedPackages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportPackagesHoffmann">
+      <soap12:operation soapAction="PPLIEGate/ImportPackagesHoffmann" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportESYCOPack">
+      <soap12:operation soapAction="PPLIEGate/ImportESYCOPack" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportESYCOPackages">
+      <soap12:operation soapAction="PPLIEGate/ImportESYCOPackages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportStatusDHL">
+      <soap12:operation soapAction="PPLIEGate/ImportStatusDHL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportStatusesDHL">
+      <soap12:operation soapAction="PPLIEGate/ImportStatusesDHL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrderCart">
+      <soap12:operation soapAction="PPLIEGate/ImportOrderCart" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrdersCart">
+      <soap12:operation soapAction="PPLIEGate/ImportOrdersCart" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IEGateHttpGet" type="tns:IEGateHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetZipCodes">
+      <http:operation location="/GetZipCodes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCities">
+      <http:operation location="/GetCities" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCitiesCount">
+      <http:operation location="/GetCitiesCount" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IS_ONLINE">
+      <http:operation location="/IS_ONLINE" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPackagesInfo">
+      <http:operation location="/GetPackagesInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPackageToDelivery">
+      <http:operation location="/GetPackageToDelivery" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPackageInfo">
+      <http:operation location="/GetPackageInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportPackages">
+      <http:operation location="/ImportPackages" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrders">
+      <http:operation location="/ImportOrders" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IEGateHttpPost" type="tns:IEGateHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetZipCodes">
+      <http:operation location="/GetZipCodes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCities">
+      <http:operation location="/GetCities" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCitiesCount">
+      <http:operation location="/GetCitiesCount" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IS_ONLINE">
+      <http:operation location="/IS_ONLINE" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPackagesInfo">
+      <http:operation location="/GetPackagesInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPackageToDelivery">
+      <http:operation location="/GetPackageToDelivery" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPackageInfo">
+      <http:operation location="/GetPackageInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportPackages">
+      <http:operation location="/ImportPackages" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportOrders">
+      <http:operation location="/ImportOrders" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IEGate">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Webová služba pro import zásilek a objednávek přepravy.</wsdl:documentation>
+    <wsdl:port name="IEGateSoap" binding="tns:IEGateSoap">
+      <soap:address location="http://www.ppl.cz/iegate/IEGate.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IEGateSoap12" binding="tns:IEGateSoap12">
+      <soap12:address location="http://www.ppl.cz/iegate/IEGate.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IEGateHttpGet" binding="tns:IEGateHttpGet">
+      <http:address location="http://www.ppl.cz/iegate/IEGate.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IEGateHttpPost" binding="tns:IEGateHttpPost">
+      <http:address location="http://www.ppl.cz/iegate/IEGate.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

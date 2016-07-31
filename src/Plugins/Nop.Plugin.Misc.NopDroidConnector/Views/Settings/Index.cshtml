@@ -1,0 +1,92 @@
+﻿@model Nop.Plugin.Misc.NopDroidConnector.Models.SettingsModel
+
+@using Nop.Web.Framework;
+
+@{
+    Layout = null; 
+}
+
+<style type="text/css">
+    
+    .nopdroidconnector-success {
+        border-radius: 4px 4px 4px 4px;
+        -moz-border-radius: 4px 4px 4px 4px;
+        -webkit-border-radius: 4px 4px 4px 4px;
+        margin-bottom: 10px;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+        padding: 8px 35px 8px 14px;
+        background-color: #DFF0D8;
+        border-color: #D6E9C6;
+        color: #468847;
+    }
+    
+    .nopdroidconnector-error .validation-summary-errors ul li {
+        display: block;
+        border-radius: 4px 4px 4px 4px;
+        -moz-border-radius: 4px 4px 4px 4px;
+        -webkit-border-radius: 4px 4px 4px 4px;
+        margin-bottom: 10px;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+        padding: 8px 35px 8px 14px;
+        font-weight: bold;
+        background-color: #F2DEDE;
+        border-color: #EED3D7;
+        color: #B94A48;
+    }
+    
+    .nopdroidconnector-error ul {
+        list-style-type: none;
+        margin-left: 0;
+        padding-left: 0;  
+    }
+</style>
+
+<h3>NopDroidConnector</h3>
+
+<p>This ist the connector for nopDroid.</p>
+<p>
+    nopDroid is an Android&trade; app that allows you to manage your nopCommerce webshop when you are on the move.
+</p>
+<p>
+    <a href="http://play.google.com/store/apps/details?id=com.jfsoftdev.nopdroid" target="_blank">
+        <img alt="Android app on Google Play"
+             src="http://developer.android.com/images/brand/en_generic_rgb_wo_45.png" />
+    </a>
+</p>
+<br />
+<p>
+    Please set the SECRET and click 'Save' button. Than you can install nopDroid from Google Play on your Android&trade; device.
+</p>
+<div><b>Note: you have to restart application to apply settings changes! To do this, click 'Restart application' at the upper right corner.</b></div>
+
+<br/>
+
+@using (Html.BeginForm())
+{
+    <div class="nopdroidconnector-error">
+        @Html.ValidationSummary()
+    </div>
+    
+    if (Model.IsSaved)
+    {
+        <div class="nopdroidconnector-success">
+            <strong>Settings saved.</strong>
+        </div>
+    }
+    
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.Secret):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.Secret)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" width="100%">
+                <button type="submit" name="save" value="save" class="t-button">@T("Admin.Common.Save")</button>
+            </td>
+        </tr>
+    </table>
+}

@@ -1,0 +1,832 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="fbId">
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="([0-9]+)"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="((ext:[^:]+:.+)|(code:.+)|(uuid:.+)|(ean:.+)|(plu:.+)|(vatid:.+)|(ws:.+)|(in:.+)|(key:.+))"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="(\[(([0-9]+)|((ext:[^:]+:.+)|(code:.+)|(uuid:.+)|(ean:.+)|(plu:.+)|(vatid:.+)|(ws:.+)|(in:.+)|(key:.+)))\])+"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+
+    <xs:simpleType name="fbBoolean">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="fbImportMode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ok"/>
+            <xs:enumeration value="ignore"/>
+            <xs:enumeration value="fail"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="fbIfNotFoundMode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="null"/>
+            <xs:enumeration value="fail"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+
+
+                <xs:simpleType name="IdTypeInner">
+                        <xs:restriction base="fbId"/>
+                </xs:simpleType>
+
+            <xs:complexType name="IdType">
+                <xs:simpleContent>
+                    <xs:extension base="IdTypeInner">
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="KodTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                    
+                                    <xs:maxLength value="20"/>
+                            </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="KodType">
+                <xs:simpleContent>
+                    <xs:extension base="KodTypeInner">
+                            <xs:attribute name="previousValue" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="NazevTypeInner">
+                            <xs:restriction base="xs:string">
+                                    
+                                    <xs:maxLength value="255"/>
+                            </xs:restriction>
+                </xs:simpleType>
+
+            <xs:complexType name="NazevType">
+                <xs:simpleContent>
+                    <xs:extension base="NazevTypeInner">
+                            <xs:attribute name="previousValue" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="NazevATypeInner">
+        <xs:union>
+            <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                    
+                                    <xs:maxLength value="255"/>
+                            </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="NazevAType">
+                <xs:simpleContent>
+                    <xs:extension base="NazevATypeInner">
+                            <xs:attribute name="previousValue" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="NazevBTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                    
+                                    <xs:maxLength value="255"/>
+                            </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="NazevBType">
+                <xs:simpleContent>
+                    <xs:extension base="NazevBTypeInner">
+                            <xs:attribute name="previousValue" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="NazevCTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                    
+                                    <xs:maxLength value="255"/>
+                            </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="NazevCType">
+                <xs:simpleContent>
+                    <xs:extension base="NazevCTypeInner">
+                            <xs:attribute name="previousValue" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="StrobrTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="xs:string"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="StrobrType">
+                <xs:simpleContent>
+                    <xs:extension base="StrobrTypeInner">
+                            <xs:attribute name="previousValue" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PoradiTypeInner">
+                                <xs:restriction base="xs:integer">
+                                    
+                                    <xs:minInclusive value="1"/>
+                                    
+                                </xs:restriction>
+                </xs:simpleType>
+
+            <xs:complexType name="PoradiType">
+                <xs:simpleContent>
+                    <xs:extension base="PoradiTypeInner">
+                            <xs:attribute name="previousValue" type="xs:integer"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="StromTypeInner">
+                        <xs:restriction base="fbId"/>
+                </xs:simpleType>
+
+            <xs:complexType name="StromType">
+                <xs:simpleContent>
+                    <xs:extension base="StromTypeInner">
+                            <xs:attribute name="if-not-found" type="fbIfNotFoundMode"/>
+                            <xs:attribute name="previousValue" type="fbId"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="OtecTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="fbId"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="OtecType">
+                <xs:simpleContent>
+                    <xs:extension base="OtecTypeInner">
+                            <xs:attribute name="if-not-found" type="fbIfNotFoundMode"/>
+                            <xs:attribute name="previousValue" type="fbId"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+
+                <xs:simpleType name="PrilohyIdTypeInner">
+                        <xs:restriction base="fbId"/>
+                </xs:simpleType>
+
+            <xs:complexType name="PrilohyIdType">
+                <xs:simpleContent>
+                    <xs:extension base="PrilohyIdTypeInner">
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PrilohyNazSoubTypeInner">
+                            <xs:restriction base="xs:string">
+                                    
+                                    <xs:maxLength value="255"/>
+                            </xs:restriction>
+                </xs:simpleType>
+
+            <xs:complexType name="PrilohyNazSoubType">
+                <xs:simpleContent>
+                    <xs:extension base="PrilohyNazSoubTypeInner">
+                            <xs:attribute name="previousValue" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PrilohyPoznamTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="xs:string"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="PrilohyPoznamType">
+                <xs:simpleContent>
+                    <xs:extension base="PrilohyPoznamTypeInner">
+                            <xs:attribute name="previousValue" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PrilohyContentTypeTypeInner">
+                            <xs:restriction base="xs:string">
+                                    
+                                    <xs:maxLength value="50"/>
+                            </xs:restriction>
+                </xs:simpleType>
+
+            <xs:complexType name="PrilohyContentTypeType">
+                <xs:simpleContent>
+                    <xs:extension base="PrilohyContentTypeTypeInner">
+                            <xs:attribute name="previousValue" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PrilohyPrilozitTypeInner">
+                        <xs:restriction base="fbBoolean"/>
+                </xs:simpleType>
+
+            <xs:complexType name="PrilohyPrilozitType">
+                <xs:simpleContent>
+                    <xs:extension base="PrilohyPrilozitTypeInner">
+                            <xs:attribute name="previousValue" type="fbBoolean"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PrilohyLinkTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="xs:string"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="PrilohyLinkType">
+                <xs:simpleContent>
+                    <xs:extension base="PrilohyLinkTypeInner">
+                            <xs:attribute name="previousValue" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PrilohyLinkPictureTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="fbBoolean"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="PrilohyLinkPictureType">
+                <xs:simpleContent>
+                    <xs:extension base="PrilohyLinkPictureTypeInner">
+                            <xs:attribute name="previousValue" type="fbBoolean"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PrilohyMainAttachmentTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="fbBoolean"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="PrilohyMainAttachmentType">
+                <xs:simpleContent>
+                    <xs:extension base="PrilohyMainAttachmentTypeInner">
+                            <xs:attribute name="previousValue" type="fbBoolean"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PrilohyDataHashTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                    
+                                    <xs:maxLength value="50"/>
+                            </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="PrilohyDataHashType">
+                <xs:simpleContent>
+                    <xs:extension base="PrilohyDataHashTypeInner">
+                            <xs:attribute name="previousValue" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PrilohyPictureWidthTypeInner">
+        <xs:union>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            <xs:simpleType>
+                                <xs:restriction base="xs:integer">
+                                    
+                                    <xs:minInclusive value="0"/>
+                                    
+                                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="PrilohyPictureWidthType">
+                <xs:simpleContent>
+                    <xs:extension base="PrilohyPictureWidthTypeInner">
+                            <xs:attribute name="previousValue" type="xs:integer"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PrilohyPictureHeightTypeInner">
+        <xs:union>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            <xs:simpleType>
+                                <xs:restriction base="xs:integer">
+                                    
+                                    <xs:minInclusive value="0"/>
+                                    
+                                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="PrilohyPictureHeightType">
+                <xs:simpleContent>
+                    <xs:extension base="PrilohyPictureHeightTypeInner">
+                            <xs:attribute name="previousValue" type="xs:integer"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PrilohyKonektorTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="fbId"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="PrilohyKonektorType">
+                <xs:simpleContent>
+                    <xs:extension base="PrilohyKonektorTypeInner">
+                            <xs:attribute name="if-not-found" type="fbIfNotFoundMode"/>
+                            <xs:attribute name="previousValue" type="fbId"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PrilohyZakazkaTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="fbId"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="PrilohyZakazkaType">
+                <xs:simpleContent>
+                    <xs:extension base="PrilohyZakazkaTypeInner">
+                            <xs:attribute name="if-not-found" type="fbIfNotFoundMode"/>
+                            <xs:attribute name="previousValue" type="fbId"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PrilohySmlouvaTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="fbId"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="PrilohySmlouvaType">
+                <xs:simpleContent>
+                    <xs:extension base="PrilohySmlouvaTypeInner">
+                            <xs:attribute name="if-not-found" type="fbIfNotFoundMode"/>
+                            <xs:attribute name="previousValue" type="fbId"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PrilohyPolSmlouvyTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="fbId"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="PrilohyPolSmlouvyType">
+                <xs:simpleContent>
+                    <xs:extension base="PrilohyPolSmlouvyTypeInner">
+                            <xs:attribute name="if-not-found" type="fbIfNotFoundMode"/>
+                            <xs:attribute name="previousValue" type="fbId"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PrilohyUzelTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="fbId"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="PrilohyUzelType">
+                <xs:simpleContent>
+                    <xs:extension base="PrilohyUzelTypeInner">
+                            <xs:attribute name="if-not-found" type="fbIfNotFoundMode"/>
+                            <xs:attribute name="previousValue" type="fbId"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PrilohyAdrUdalostTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="fbId"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="PrilohyAdrUdalostType">
+                <xs:simpleContent>
+                    <xs:extension base="PrilohyAdrUdalostTypeInner">
+                            <xs:attribute name="if-not-found" type="fbIfNotFoundMode"/>
+                            <xs:attribute name="previousValue" type="fbId"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+    <xs:element name="winstrom">
+        <xs:complexType>
+            <xs:sequence>
+    <xs:element name="strom" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+            <xs:documentation>Uzel stromu</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence> 
+                        <xs:element name="id" type="IdType" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                    <xs:documentation>ID</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="kod" type="KodType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Zkratka</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="nazev" type="NazevType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Název</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="nazevA" type="NazevAType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Název EN</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="nazevB" type="NazevBType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Název DE</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="nazevC" type="NazevCType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Název FR</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="strobr" type="StrobrType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation></xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="poradi" type="PoradiType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Pořadí</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="strom" type="StromType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation></xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="otec" type="OtecType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation></xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+
+                    <xs:element name="prilohy" minOccurs="0" maxOccurs="1">
+                        <xs:complexType>
+                            <xs:sequence>
+    <xs:element name="priloha" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+            <xs:documentation>Přílohy</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence> 
+                        <xs:element name="id" type="PrilohyIdType" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                    <xs:documentation>ID</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="nazSoub" type="PrilohyNazSoubType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Název souboru</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="poznam" type="PrilohyPoznamType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Poznámka</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="contentType" type="PrilohyContentTypeType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Typ dat</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="prilozit" type="PrilohyPrilozitType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Přiložit</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="link" type="PrilohyLinkType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Odkaz</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="linkPicture" type="PrilohyLinkPictureType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Odkaz na obrázek</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="mainAttachment" type="PrilohyMainAttachmentType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Hlavní příloha</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="dataHash" type="PrilohyDataHashType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Otisk dat přílohy (MD5 součet)</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="pictureWidth" type="PrilohyPictureWidthType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Šířka obrázku</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="pictureHeight" type="PrilohyPictureHeightType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Výška obrázku</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="konektor" type="PrilohyKonektorType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Konektor</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="zakazka" type="PrilohyZakazkaType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Zakázka</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="smlouva" type="PrilohySmlouvaType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Smlouva</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="polSmlouvy" type="PrilohyPolSmlouvyType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Pol. smlouvy</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="uzel" type="PrilohyUzelType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Strom</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="adrUdalost" type="PrilohyAdrUdalostType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Událost</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+
+            </xs:sequence>
+
+            <xs:attribute name="create" type="fbImportMode"/>
+            <xs:attribute name="update" type="fbImportMode"/>
+        </xs:complexType>
+    </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="removeAll" type="fbBoolean"/>
+                        </xs:complexType>
+                    </xs:element>
+            </xs:sequence>
+
+            <xs:attribute name="create" type="fbImportMode"/>
+            <xs:attribute name="update" type="fbImportMode"/>
+        </xs:complexType>
+    </xs:element>
+            </xs:sequence>
+            <xs:attribute name="version">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="1.0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="atomic" type="fbBoolean"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

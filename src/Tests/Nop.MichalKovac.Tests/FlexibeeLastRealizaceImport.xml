@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<winstrom>
+  <objednavka-prijata>
+    <id>ext:CIN:O3359</id>
+    <realizaceObj type="faktura-vydana">
+      <id>ext:CIN:FVO3359</id>
+      <polozkyObchDokladu>
+        <polozka>
+          <id>ext:CIN:PON7562</id>
+          <mj>1</mj>
+        </polozka>
+        <polozka>
+          <id>ext:CIN:PON7563</id>
+          <mj>3</mj>
+        </polozka>
+        <polozka>
+          <id>ext:CIN:DOP3359</id>
+          <mj>1</mj>
+        </polozka>
+      </polozkyObchDokladu>
+    </realizaceObj>
+  </objednavka-prijata>
+</winstrom>

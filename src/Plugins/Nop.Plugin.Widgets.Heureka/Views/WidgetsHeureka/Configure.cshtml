@@ -1,0 +1,61 @@
+﻿@{
+	Layout = "";
+}
+@model Nop.Plugin.Widgets.Heureka.Models.ConfigurationModel
+@using Nop.Web.Framework;
+@Html.Action("StoreScopeConfiguration", "Setting", new { area = "Admin" })
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+<table class="adminContent">
+    <tr>
+        <td class="adminTitle">
+            @Html.NopLabelFor(model => model.Enabled):
+        </td>
+        <td class="adminData">
+            @Html.EditorFor(model => model.Enabled)
+            @Html.ValidationMessageFor(model => model.Enabled)
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
+            @Html.NopLabelFor(model => model.HeurekaPrivateKey):
+        </td>
+        <td class="adminData">
+            @Html.EditorFor(model => model.HeurekaPrivateKey)
+            @Html.ValidationMessageFor(model => model.HeurekaPrivateKey)
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
+            @Html.NopLabelFor(model => model.ZboziCzCode):
+        </td>
+        <td class="adminData">
+            @Html.TextAreaFor(model => model.ZboziCzCode, new { style = "Width: 600px; Height: 50px;" })
+            @Html.ValidationMessageFor(model => model.ZboziCzCode)
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" width="100%">
+            <button type="submit" name="save" value="save" class="t-button">
+                @T("Admin.Common.Save")</button>
+            <button type="submit" name="synchronize" value="synchronize" class="t-button">
+                @T("Plugins.Widgets.Heureka.SynchronizeCategories")</button>
+        </td>
+    </tr>
+    @if (!String.IsNullOrEmpty(Model.Result))
+    {
+        <tr class="adminSeparator">
+            <td colspan="2">
+                <hr />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" width="100%">
+                <b>@Html.Raw(Model.Result)</b>
+            </td>
+        </tr>
+    }
+</table>
+
+}

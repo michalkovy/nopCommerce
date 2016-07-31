@@ -12,8 +12,8 @@ We have put a lot of effort into ensuring that nopCommerce is optimized for sear
 
 nopCommerce offers unprecedented flexibility and control. Since it is open-source, nopCommerce’s source code is available free for download.
 
-
-## nopCommerce resources: ##
+ 
+## nopCommerce resources: ## 
 
 nopCommerce Site: [http://www.nopcommerce.com](http://www.nopcommerce.com)
 
