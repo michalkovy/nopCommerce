@@ -2,7 +2,7 @@
 FriendlyName: Winstrom Flexibee
 SystemName: Widgets.Flexibee
 Version: 1.00
-SupportedVersions: 3.70
+SupportedVersions: 3.80
 Author: Michal Kovac
 DisplayOrder: 1
 FileName: Nop.Plugin.Widgets.Flexibee.dll

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{E4ACA93B-D3DE-4557-B069-F1DB42925A4B}"
 EndProject
@@ -79,8 +79,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nop.Plugin.ExternalAuth.Facebook", "Plugins\Nop.Plugin.ExternalAuth.Facebook\Nop.Plugin.ExternalAuth.Facebook.csproj", "{446FED73-BCA1-4D8F-BC13-EA1507C7EF29}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nop.Plugin.Widgets.NivoSlider", "Plugins\Nop.Plugin.Widgets.NivoSlider\Nop.Plugin.Widgets.NivoSlider.csproj", "{9978B382-0BCD-4621-B6B5-52E0E3B5F464}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nop.Plugin.Misc.FacebookShop", "Plugins\Nop.Plugin.Misc.FacebookShop\Nop.Plugin.Misc.FacebookShop.csproj", "{6216A5CA-8599-4B53-8E70-F21CC6D4273C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nop.Plugin.Feed.Zbozi", "Plugins\Nop.Plugin.Feed.Zbozi\Nop.Plugin.Feed.Zbozi.csproj", "{8C36A373-3909-4A9D-BD2A-76D58A94FFF1}"
 EndProject
@@ -444,16 +442,6 @@ Global
 		{9978B382-0BCD-4621-B6B5-52E0E3B5F464}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{9978B382-0BCD-4621-B6B5-52E0E3B5F464}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{9978B382-0BCD-4621-B6B5-52E0E3B5F464}.Release|x86.ActiveCfg = Release|Any CPU
-		{6216A5CA-8599-4B53-8E70-F21CC6D4273C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6216A5CA-8599-4B53-8E70-F21CC6D4273C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6216A5CA-8599-4B53-8E70-F21CC6D4273C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{6216A5CA-8599-4B53-8E70-F21CC6D4273C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{6216A5CA-8599-4B53-8E70-F21CC6D4273C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6216A5CA-8599-4B53-8E70-F21CC6D4273C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6216A5CA-8599-4B53-8E70-F21CC6D4273C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6216A5CA-8599-4B53-8E70-F21CC6D4273C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{6216A5CA-8599-4B53-8E70-F21CC6D4273C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{6216A5CA-8599-4B53-8E70-F21CC6D4273C}.Release|x86.ActiveCfg = Release|Any CPU
 		{8C36A373-3909-4A9D-BD2A-76D58A94FFF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8C36A373-3909-4A9D-BD2A-76D58A94FFF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C36A373-3909-4A9D-BD2A-76D58A94FFF1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -608,7 +596,6 @@ Global
 		{C2B83AF5-80F6-4B8C-8628-FA7DE10C3BB5} = {7881B112-7843-4542-B1F7-F99553FB9BB7}
 		{446FED73-BCA1-4D8F-BC13-EA1507C7EF29} = {7881B112-7843-4542-B1F7-F99553FB9BB7}
 		{9978B382-0BCD-4621-B6B5-52E0E3B5F464} = {7881B112-7843-4542-B1F7-F99553FB9BB7}
-		{6216A5CA-8599-4B53-8E70-F21CC6D4273C} = {7881B112-7843-4542-B1F7-F99553FB9BB7}
 		{8C36A373-3909-4A9D-BD2A-76D58A94FFF1} = {7881B112-7843-4542-B1F7-F99553FB9BB7}
 		{7A0D8B1D-D96B-4042-B149-3E70CF69BE93} = {7881B112-7843-4542-B1F7-F99553FB9BB7}
 		{874DE167-D32B-4C87-AD07-414410F65EB5} = {7881B112-7843-4542-B1F7-F99553FB9BB7}
