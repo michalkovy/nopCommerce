@@ -15,6 +15,8 @@ using Nop.Core.Domain.Payments;
 using Nop.Services.Events;
 using Nop.Services.Messages;
 using Nop.Core.Domain.Shipping;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Nop.Plugin.Shipping.PPL.Controllers
 {
@@ -98,7 +100,7 @@ namespace Nop.Plugin.Shipping.PPL.Controllers
         {
             var shipmentTracker = new PPLShipmentTracker(_logger, _localizationService, _PPLSettings);
 
-            var orders = _orderService.SearchOrders(createdFromUtc: DateTime.UtcNow - TimeSpan.FromDays(90), createdToUtc: DateTime.UtcNow + TimeSpan.FromDays(1), ss: Core.Domain.Shipping.ShippingStatus.Shipped);
+            var orders = _orderService.SearchOrders(createdFromUtc: DateTime.UtcNow - TimeSpan.FromDays(90), createdToUtc: DateTime.UtcNow + TimeSpan.FromDays(1), ssIds: (new int[]{ (int)ShippingStatus.Shipped }).ToList() );
             foreach (var order in orders)
             {
                 foreach (var shipment in order.Shipments)
@@ -173,7 +175,7 @@ namespace Nop.Plugin.Shipping.PPL.Controllers
                 }
             }
 
-            orders = _orderService.SearchOrders(createdFromUtc: DateTime.UtcNow - TimeSpan.FromDays(90), createdToUtc: DateTime.UtcNow + TimeSpan.FromDays(1), ss: Core.Domain.Shipping.ShippingStatus.Shipped);
+            orders = _orderService.SearchOrders(createdFromUtc: DateTime.UtcNow - TimeSpan.FromDays(90), createdToUtc: DateTime.UtcNow + TimeSpan.FromDays(1), ssIds: (new int[] { (int)ShippingStatus.Shipped }).ToList());
             foreach (var order in orders)
             {
                 if ((order.PickUpInStore || order.ShippingMethod == "Osobní odběr v Praze") && order.PaymentMethodSystemName == "Payments.PayInStore" && order.PaidDateUtc.HasValue)
