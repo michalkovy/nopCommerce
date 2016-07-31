@@ -183,7 +183,7 @@ namespace Nop.Plugin.Feed.Zbozi
         /// </summary>
         /// <param name="stream">Stream</param>
         /// <returns>Generated feed</returns>
-        public void GenerateFeed(string zboziFilePath, Store store)
+        public void GenerateFeed(string zboziFilePath, string heurekaFilePath, Store store)
         {
             if (String.IsNullOrWhiteSpace(zboziFilePath))
                 throw new ArgumentNullException("zboziFilePath");
@@ -232,7 +232,7 @@ namespace Nop.Plugin.Feed.Zbozi
                 let pictureUrlAll = pictureProductUrls.Where(pp => pp.ProductId == pv.Id).Union(pictureProductUrls.Where(pp => pp.ProductId == p.Id)).Select(pp => pp.PictureUrl)
                 let pictureUrl = pictureUrlAll.FirstOrDefault()
                 let priceWithVat = pv.TaxCategoryId == 9 ? pv.Price : pv.TaxCategoryId == 7 ? 1.21M * pv.Price : 1.15M * pv.Price
-                select new
+                select new ShopItem()
                 {
                     Id = pv.Id,
                     Name = nameWithManufacturer,
@@ -256,38 +256,86 @@ namespace Nop.Plugin.Feed.Zbozi
                     Categories = catB.CategoryBreadCrumbs,
                     AlternativePictures = pictureUrlAll.Where(pic => pic != pictureUrl).ToList()
                 };
-                
-            var productsExported = products.AsEnumerable().Select(p =>   
-                new XElement("SHOPITEM",
-                    //TODO: add manufacturer to name
-                    new XElement("PRODUCTNAME", p.Name),
-                    new XElement("PRODUCT", p.Name),
-                    new XElement("DESCRIPTION", p.Decription),
-                    new XElement("URL", p.Url),
-                    new XElement("ITEM_TYPE", "new"),
-                    new XElement("AVAILABILITY", p.OnStock ? "0" : null),
-                    new XElement("DELIVERY_DATE", p.OnStock ? "0" : null),
-                    new XElement("SHOP_DEPOTS", p.OnStock ? "kova2455" : null),
-                    new XElement("IMGURL", p.ImgUrl),
-                    p.AlternativePictures.Select(ap => new XElement("IMGURL_ALTERNATIVE", ap)),
-                    new XElement("PRICE", String.Format("{0:0}", p.Price) ),
-                    new XElement("VAT", p.Vat),
-                    new XElement("PRICE_VAT", String.Format("{0:0}", p.PriceWithVat)),
 
-                    new XElement("MANUFACTURER", p.Manufacturer),
-                    new XElement("PRODUCTNO", p.ManufacturerPartNumber),
-                    new XElement("EAN", p.Ean),
-                    new XElement("ITEM_ID", p.Id),
-                    new XElement("EXTRA_MESSAGE", p.ExtraMessage),
-                    p.Categories.Select(c => new XElement("CATEGORYTEXT", c))
-                ));
+            FinishZboziFeedGeneration(products, zboziFilePath);
+            FinishHeurekaFeedGeneration(products, heurekaFilePath);
+        }
+
+        protected class ShopItem
+        {
+            public int Id;
+            public string Name;
+            public string Decription;
+            public string Url;
+            public bool OnStock;
+            public string ImgUrl;
+            public decimal Price;
+            public string Vat;
+            public decimal PriceWithVat;
+            public string Manufacturer;
+            public string ManufacturerPartNumber;
+            public string Ean;
+            public string ExtraMessage;
+            public List<string> Categories;
+            public List<string> AlternativePictures;
+        }
+
+        private void FinishZboziFeedGeneration(IQueryable<ShopItem> products, string zboziFilePath)
+        {
+            var productsExported = products.AsEnumerable().Select(p =>
+                            new XElement("SHOPITEM",
+                                new XElement("ITEM_ID", p.Id),
+                                new XElement("PRODUCTNAME", p.Name),
+                                new XElement("DESCRIPTION", p.Decription),
+                                new XElement("URL", p.Url),
+                                new XElement("PRICE_VAT", String.Format("{0:0}", p.PriceWithVat)),
+                                new XElement("DELIVERY_DATE", p.OnStock ? "0" : null),
+                                new XElement("IMGURL", p.ImgUrl),
+                                new XElement("EAN", p.Ean),
+                                new XElement("PRODUCTNO", p.ManufacturerPartNumber),
+                                new XElement("MANUFACTURER", p.Manufacturer),
+                                new XElement("PRODUCT", p.Name),  //TODO: add manufacturer to name
+                                new XElement("ITEM_TYPE", "new"),
+                                new XElement("EXTRA_MESSAGE", p.ExtraMessage),
+                                new XElement("SHOP_DEPOTS", p.OnStock ? "2650899" : null)
+                                //p.Categories.Select(c => new XElement("CATEGORYTEXT", c)) //ma i seznam, ale je potreba pridat
+                            ));
+
+            XNamespace ns = "http://www.zbozi.cz/ns/offer/1.0";
+            XDocument document = new XDocument(
+                new XElement(ns + "SHOP",
+                    productsExported
+                )
+            );
+            document.Save(zboziFilePath);
+        }
+
+        private void FinishHeurekaFeedGeneration(IQueryable<ShopItem> products, string heurekaFilePath)
+        {
+            var productsExported = products.AsEnumerable().Select(p =>
+                            new XElement("SHOPITEM",
+                                new XElement("ITEM_ID", p.Id),
+                                new XElement("PRODUCTNAME", p.Name),
+                                new XElement("PRODUCT", p.Name),  //TODO: add manufacturer to name
+                                new XElement("DESCRIPTION", p.Decription),
+                                new XElement("URL", p.Url),
+                                new XElement("IMGURL", p.ImgUrl),
+                                p.AlternativePictures.Select(ap => new XElement("IMGURL_ALTERNATIVE", ap)),
+                                new XElement("PRICE_VAT", String.Format("{0:0}", p.PriceWithVat)),
+                                new XElement("ITEM_TYPE", "new"),
+                                new XElement("MANUFACTURER", p.Manufacturer),
+                                p.Categories.Select(c => new XElement("CATEGORYTEXT", c)),
+                                new XElement("EAN", p.Ean),
+                                new XElement("DELIVERY_DATE", p.OnStock ? "0" : null),
+                                new XElement("PRODUCTNO", p.ManufacturerPartNumber) //heureca example has it but not in spec
+                            ));
 
             XDocument document = new XDocument(
                 new XElement("SHOP",
                     productsExported
                 )
             );
-            document.Save(zboziFilePath);
+            document.Save(heurekaFilePath);
         }
 
         public class LocalizationEntity
@@ -538,9 +586,11 @@ namespace Nop.Plugin.Feed.Zbozi
         {
             foreach(var store in _storeService.GetAllStores().Where(s => s.Name != "Saskia.pro" && s.Name != "Saskia.ru"))
             {
-                string fileName = string.Format("Zbozi_{0}.xml", SeoExtensions.GetSeName(store.Name));
-                string filePath = string.Format("{0}content\\files\\exportimport\\{1}", HttpRuntime.AppDomainAppPath, fileName);
-                GenerateFeed(filePath, store);
+                string zboziFileName = string.Format("Zbozi_{0}.xml", SeoExtensions.GetSeName(store.Name));
+                string heurekaFileName = string.Format("Heureka_{0}.xml", SeoExtensions.GetSeName(store.Name));
+                string zboziFilePath = string.Format("{0}content\\files\\exportimport\\{1}", HttpRuntime.AppDomainAppPath, zboziFileName);
+                string heurekaFilePath = string.Format("{0}content\\files\\exportimport\\{1}", HttpRuntime.AppDomainAppPath, heurekaFileName);
+                GenerateFeed(zboziFilePath, heurekaFilePath, store);
             }
         }
 

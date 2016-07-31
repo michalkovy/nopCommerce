@@ -139,15 +139,18 @@ namespace Nop.Plugin.Feed.Zbozi.Controllers
                 string result = "";
                 var store = _storeContext.CurrentStore;
                 //string fileName = string.Format("Zbozi_{0}_{1}.xml", DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"), CommonHelper.GenerateRandomDigitCode(4));
-                string fileName = string.Format("Zbozi_{0}.xml", Nop.Services.Seo.SeoExtensions.GetSeName(store.Name));
-                string filePath = string.Format("{0}content\\files\\exportimport\\{1}", Request.PhysicalApplicationPath, fileName);
-                plugin.GenerateFeed(filePath, store);
+                string zboziFileName = string.Format("Zbozi_{0}.xml", Nop.Services.Seo.SeoExtensions.GetSeName(store.Name));
+                string heurekaFileName = string.Format("Heureka_{0}.xml", Nop.Services.Seo.SeoExtensions.GetSeName(store.Name));
+                string zboziFilePath = string.Format("{0}content\\files\\exportimport\\{1}", Request.PhysicalApplicationPath, zboziFileName);
+                string heurekaFilePath = string.Format("{0}content\\files\\exportimport\\{1}", Request.PhysicalApplicationPath, heurekaFileName);
+                plugin.GenerateFeed(zboziFilePath, heurekaFilePath, store);
 
                 //string fileSeznamPath = string.Format("{0}SeznamXML.aspx", Request.PhysicalApplicationPath);
                 //System.IO.File.Copy(filePath, fileSeznamPath, true);
 
-                string clickhereStr = string.Format("<a href=\"{0}content/files/exportimport/{1}\" target=\"_blank\">{2}</a> ", _webHelper.GetStoreLocation(false), fileName, _localizationService.GetResource("Plugins.Feed.Zbozi.ClickHere"));
-                result += string.Format(_localizationService.GetResource("Plugins.Feed.Zbozi.SuccessResult"), clickhereStr);
+                string clickhereZboziStr = string.Format("<a href=\"{0}content/files/exportimport/{1}\" target=\"_blank\">{2}</a> ", _webHelper.GetStoreLocation(false), zboziFileName, _localizationService.GetResource("Plugins.Feed.Zbozi.ClickHere"));
+                string clickhereHeurekaStr = string.Format("<a href=\"{0}content/files/exportimport/{1}\" target=\"_blank\">{2}</a> ", _webHelper.GetStoreLocation(false), heurekaFileName, _localizationService.GetResource("Plugins.Feed.Zbozi.ClickHere"));
+                result += string.Format(_localizationService.GetResource("Plugins.Feed.Zbozi.SuccessResult"), clickhereZboziStr + clickhereHeurekaStr);
                 
                 model.GenerateFeedResult = result;
             }
