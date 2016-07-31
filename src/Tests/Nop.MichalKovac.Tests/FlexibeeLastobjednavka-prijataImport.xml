@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<winstrom xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <objednavka-prijata>
+    <id>ext:CIN:O3361</id>
+    <cisDosle>3361</cisDosle>
+    <datObj>2014-01-12T00:00:00Z</datObj>
+    <datVyst>2014-01-12</datVyst>
+    <poznam />
+    <nazFirmy>Nespresso</nazFirmy>
+    <ulice>pařížská 10</ulice>
+    <mesto>Praha 1</mesto>
+    <psc>11000</psc>
+    <postovniShodna>true</postovniShodna>
+    <typDokl>code:OBPS</typDokl>
+    <mena>code:CZK</mena>
+    <firma>ext:CIN:C212041</firma>
+    <stat>code:CZ</stat>
+    <formaDopravy>code:OSOBNĚ</formaDopravy>
+    <formaUhradyCis>code:HOTOVE</formaUhradyCis>
+    <typDoklNabFak>code:FAKTURA</typDoklNabFak>
+    <polozkyObchDokladu>
+      <objednavka-prijata-polozka>
+        <id>ext:CIN:PON7566</id>
+        <typPolozkyK>typPolozky.katalog</typPolozkyK>
+        <mnozMj>1</mnozMj>
+        <cenaMj>70.2479</cenaMj>
+        <sklad>code:BYT</sklad>
+        <cenik>ext:CIN:P468</cenik>
+      </objednavka-prijata-polozka>
+      <objednavka-prijata-polozka>
+        <id>ext:CIN:PON7567</id>
+        <typPolozkyK>typPolozky.katalog</typPolozkyK>
+        <mnozMj>1</mnozMj>
+        <cenaMj>57.0248</cenaMj>
+        <sklad>code:BYT</sklad>
+        <cenik>ext:CIN:P432</cenik>
+      </objednavka-prijata-polozka>
+      <objednavka-prijata-polozka>
+        <id>ext:CIN:PON7568</id>
+        <typPolozkyK>typPolozky.katalog</typPolozkyK>
+        <mnozMj>1</mnozMj>
+        <cenaMj>46.0870</cenaMj>
+        <sklad>code:BYT</sklad>
+        <cenik>ext:CIN:P110</cenik>
+      </objednavka-prijata-polozka>
+      <objednavka-prijata-polozka>
+        <id>ext:CIN:PON7569</id>
+        <typPolozkyK>typPolozky.katalog</typPolozkyK>
+        <mnozMj>1</mnozMj>
+        <cenaMj>44.3478</cenaMj>
+        <sklad>code:BYT</sklad>
+        <cenik>ext:CIN:P401</cenik>
+      </objednavka-prijata-polozka>
+      <objednavka-prijata-polozka>
+        <id>ext:CIN:BOD3361T7</id>
+        <typPolozkyK>typPolozky.katalog</typPolozkyK>
+        <mnozMj>19</mnozMj>
+        <typCenyDphK>typCeny.bezDph</typCenyDphK>
+        <typSzbDphK>typSzbDph.dphZakl</typSzbDphK>
+        <cenaMj>-0.8264462809917355371900826456</cenaMj>
+        <cenik>code:SLEVABODY</cenik>
+        <mj>code:B</mj>
+      </objednavka-prijata-polozka>
+    </polozkyObchDokladu>
+  </objednavka-prijata>
+</winstrom>

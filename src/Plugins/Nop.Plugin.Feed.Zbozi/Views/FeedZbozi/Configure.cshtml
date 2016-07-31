@@ -1,0 +1,93 @@
+﻿@{
+    Layout = "";
+}
+@model Nop.Plugin.Feed.Zbozi.Models.FeedZboziModel
+@using Nop.Web.Framework;
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <script type="text/javascript">
+            $(document).ready(function () {
+
+                $("#@Html.FieldIdFor(model => model.TaskEnabled)").click(toggleTaskEnabled);
+
+                toggleTaskEnabled();
+            });
+
+            function toggleTaskEnabled() {
+                if (getE('@Html.FieldIdFor(model => model.TaskEnabled)').checked) {
+                    $('#pnlGenerateStaticFileEachMinutes').show();
+                }
+                else {
+                    $('#pnlGenerateStaticFileEachMinutes').hide();
+                }
+            }
+
+    </script>
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.ProductPictureSize):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.ProductPictureSize)
+                @Html.ValidationMessageFor(model => model.ProductPictureSize)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.CurrencyId):
+            </td>
+            <td class="adminData">
+                @Html.DropDownListFor(model => model.CurrencyId, Model.AvailableCurrencies)
+                @Html.ValidationMessageFor(model => model.CurrencyId)
+            </td>
+        </tr>
+        <tr class="adminSeparator">
+            <td colspan="2">
+                <hr />
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(m => m.TaskEnabled):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(m => m.TaskEnabled)
+                @Html.ValidationMessageFor(m => m.TaskEnabled)
+            </td>
+        </tr>
+        <tr id="pnlGenerateStaticFileEachMinutes">
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.GenerateStaticFileEachMinutes):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.GenerateStaticFileEachMinutes)
+                @Html.ValidationMessageFor(model => model.GenerateStaticFileEachMinutes)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" width="100%">
+                <button type="submit" name="save" value="save" class="t-button">
+                    @T("Admin.Common.Save")</button>
+                <button type="submit" name="generate" value="generate" class="t-button">
+                    @T("Plugins.Feed.Zbozi.Generate")</button>
+                <button type="submit" name="regenerateUrls" value="regenerateUrls" class="t-button">
+                    @T("Plugins.Feed.Zbozi.RegenerateUrls")</button>
+            </td>
+        </tr>
+        @if (!String.IsNullOrEmpty(Model.GenerateFeedResult))
+        {
+            <tr class="adminSeparator">
+                <td colspan="2">
+                    <hr />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" width="100%">
+                    <b>@Html.Raw(Model.GenerateFeedResult)</b>
+                </td>
+            </tr>
+        }
+    </table>    
+}

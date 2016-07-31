@@ -1,0 +1,175 @@
+﻿@{
+    Layout = "";
+}
+@model Nop.Plugin.Misc.WebImporter.Models.ConfigurationModel
+@using Nop.Web.Framework;
+@using Nop.Plugin.Misc.WebImporter.Models;
+@using System.Linq;
+@using Nop.Core.Infrastructure;
+@Html.Action("StoreScopeConfiguration", "Setting", new { area = "Admin" })
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+<table class="adminContent">
+    <tr>
+        <td class="adminTitle">
+            @Html.NopLabelFor(model => model.AvailableSitesToImport):
+        </td>
+        <td class="adminData">
+            @Html.DropDownList("SiteToImport", Model.AvailableSitesToImport)
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
+            @Html.NopLabelFor(model => model.PageUrl):
+        </td>
+        <td class="adminData">
+            @Html.EditorFor(model => model.PageUrl)
+            @Html.ValidationMessageFor(model => model.PageUrl)
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
+            @Html.NopLabelFor(model => model.UpdatePictures):
+        </td>
+        <td class="adminData">
+            @Html.EditorFor(model => model.UpdatePictures)
+            @Html.ValidationMessageFor(model => model.UpdatePictures)
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" width="100%">
+            <button type="submit" name="save" value="save" class="t-button">
+                @T("Admin.Common.Save")</button>
+            <button type="submit" name="import" value="import" class="t-button">
+                @T("Plugins.Misc.WebImporter.Import")</button>
+            <button type="submit" name="importSite" value="importSite" class="t-button">
+                @T("Plugins.Misc.WebImporter.ImportSite")
+            </button>
+            <button type="submit" name="importCategory" value="importCategory" class="t-button">
+                @T("Plugins.Misc.WebImporter.ImportCategory")
+            </button>
+            <button type="submit" name="importProduct" value="importProduct" class="t-button">
+                @T("Plugins.Misc.WebImporter.ImportProduct")
+            </button>
+            <button type="submit" name="importProfifotoStockAvailability" value="importProfifotoStockAvailability" class="t-button">
+                @T("Plugins.Misc.WebImporter.ImportProfifotoStockAvailability")
+            </button>
+        </td>
+    </tr>
+    @if (!String.IsNullOrEmpty(Model.Result))
+    {
+        <tr class="adminSeparator">
+            <td colspan="2">
+                <hr />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" width="100%">
+                <b>@Html.Raw(Model.Result)</b>
+            </td>
+        </tr>
+    }
+</table>
+
+}
+<table class="adminContent">
+    <tr>
+        <td>
+            <div id="web-importer-link-grid"></div>
+
+            <script>
+                    $(document).ready(function () {
+                        $("#web-importer-link-grid").kendoGrid({
+                            dataSource: {
+                                type: "json",
+                                transport: {
+                                    read: {
+                                        url: "@Html.Raw(Url.Action("WebLinkList", "MiscWebImporter"))",
+                                    type: "POST",
+                                    dataType: "json"
+                                },
+                                    create: {
+                                        url: "@Html.Raw(Url.Action("WebLinkInsert", "MiscWebImporter"))",
+                                    type: "POST",
+                                    dataType: "json"
+                                },
+                                    update: {
+                                        url:"@Html.Raw(Url.Action("WebLinkUpdate", "MiscWebImporter"))",
+                                    type: "POST",
+                                    dataType: "json"
+                                },
+                                    destroy: {
+                                        url: "@Html.Raw(Url.Action("WebLinkDelete", "MiscWebImporter"))",
+                                        type: "POST",
+                                        dataType: "json"
+                                    }
+                                },
+                                schema: {
+                                    data: "Data",
+                                    total: "Total",
+                                    errors: "Errors",
+                                    model: {
+                                        id: "Id",
+                                        fields: {
+                                            ManufacturerId: { editable: true, type: "number" },
+                                            CategoryId: { editable: true, type: "number" },
+                                            Url: { editable: true, type: "string" },
+                                            Id: { editable: false, type: "number" }
+                                        }
+                                    }
+                                },
+                                requestEnd: function (e) {
+                                    if (e.type == "create" || e.type == "update") {
+                                        this.read();
+                                    }
+                                },
+                                error: function (e) {
+                                    display_kendoui_grid_error(e);
+                                    // Cancel the changes
+                                    this.cancelChanges();
+                                },
+                                serverPaging: true,
+                                serverFiltering: true,
+                                serverSorting: true
+                            },
+                            pageable: {
+                                refresh: true,
+                                numeric: false,
+                                previousNext: false,
+                                info: false
+                            },
+                            toolbar: ["create"],
+                            editable: {
+                                confirmation: false,
+                                mode: "inline"
+                            },
+                            scrollable: false,
+                            columns: [{
+                                field: "Url",
+                                title: "@T("Plugins.Misc.WebImporter.WebLinkModel.Url")",
+                                width: 300
+                            }, {
+                                field: "CategoryId",
+                                title: "@T("Plugins.Misc.WebImporter.WebLinkModel.Category")",
+                                width: 100
+                            }, {
+                                field: "ManufacturerId",
+                                title: "@T("Plugins.Misc.WebImporter.WebLinkModel.Manufacturer")",
+                                width: 100
+                            }, {
+                                command: [{
+                                    name: "edit",
+                                    text: "@T("Admin.Common.Edit")"
+                                }, {
+                                    name: "destroy",
+                                    text: "@T("Admin.Common.Delete")"
+                                }],
+                                width: 200
+                            }]
+                        });
+                    });
+            </script>
+        </td>
+    </tr>
+</table>

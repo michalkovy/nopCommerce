@@ -1,0 +1,8 @@
+﻿Group: Shipping rate computation
+FriendlyName: PPL
+SystemName: Shipping.PPL
+Version: 1.09
+SupportedVersions: 3.70
+Author: Michal Kovac
+DisplayOrder: 1
+FileName: Nop.Plugin.Shipping.PPL.dll

@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="fbId">
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="([0-9]+)"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="((ext:[^:]+:.+)|(code:.+)|(uuid:.+)|(ean:.+)|(plu:.+)|(vatid:.+)|(ws:.+)|(in:.+)|(key:.+))"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="(\[(([0-9]+)|((ext:[^:]+:.+)|(code:.+)|(uuid:.+)|(ean:.+)|(plu:.+)|(vatid:.+)|(ws:.+)|(in:.+)|(key:.+)))\])+"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+
+    <xs:simpleType name="fbBoolean">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="fbImportMode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ok"/>
+            <xs:enumeration value="ignore"/>
+            <xs:enumeration value="fail"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="fbIfNotFoundMode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="null"/>
+            <xs:enumeration value="fail"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+
+
+                <xs:simpleType name="IdTypeInner">
+                        <xs:restriction base="fbId"/>
+                </xs:simpleType>
+
+            <xs:complexType name="IdType">
+                <xs:simpleContent>
+                    <xs:extension base="IdTypeInner">
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="DatumOdTypeInner">
+                        <xs:restriction base="xs:dateTime"/>
+                </xs:simpleType>
+
+            <xs:complexType name="DatumOdType">
+                <xs:simpleContent>
+                    <xs:extension base="DatumOdTypeInner">
+                            <xs:attribute name="previousValue" type="xs:dateTime"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="DatumDoTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="xs:date"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="DatumDoType">
+                <xs:simpleContent>
+                    <xs:extension base="DatumDoTypeInner">
+                            <xs:attribute name="previousValue" type="xs:date"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="MnozstviTypeInner">
+                                <xs:restriction base="xs:decimal">
+                                    <xs:totalDigits value="19"/>
+                                    <xs:fractionDigits value="6"/>
+                                    <xs:minInclusive value="0"/>
+                                    
+                                </xs:restriction>
+                </xs:simpleType>
+
+            <xs:complexType name="MnozstviType">
+                <xs:simpleContent>
+                    <xs:extension base="MnozstviTypeInner">
+                            <xs:attribute name="previousValue" type="xs:decimal"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PoznamkaTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="xs:string"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="PoznamkaType">
+                <xs:simpleContent>
+                    <xs:extension base="PoznamkaTypeInner">
+                            <xs:attribute name="previousValue" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="FirmaTypeInner">
+                        <xs:restriction base="fbId"/>
+                </xs:simpleType>
+
+            <xs:complexType name="FirmaType">
+                <xs:simpleContent>
+                    <xs:extension base="FirmaTypeInner">
+                            <xs:attribute name="if-not-found" type="fbIfNotFoundMode"/>
+                            <xs:attribute name="previousValue" type="fbId"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="CenikTypeInner">
+                        <xs:restriction base="fbId"/>
+                </xs:simpleType>
+
+            <xs:complexType name="CenikType">
+                <xs:simpleContent>
+                    <xs:extension base="CenikTypeInner">
+                            <xs:attribute name="if-not-found" type="fbIfNotFoundMode"/>
+                            <xs:attribute name="previousValue" type="fbId"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="SkladTypeInner">
+                        <xs:restriction base="fbId"/>
+                </xs:simpleType>
+
+            <xs:complexType name="SkladType">
+                <xs:simpleContent>
+                    <xs:extension base="SkladTypeInner">
+                            <xs:attribute name="if-not-found" type="fbIfNotFoundMode"/>
+                            <xs:attribute name="previousValue" type="fbId"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="PolObchTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="fbId"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="PolObchType">
+                <xs:simpleContent>
+                    <xs:extension base="PolObchTypeInner">
+                            <xs:attribute name="if-not-found" type="fbIfNotFoundMode"/>
+                            <xs:attribute name="previousValue" type="fbId"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+
+                <xs:simpleType name="Uzivatelske-vazbyIdTypeInner">
+                        <xs:restriction base="fbId"/>
+                </xs:simpleType>
+
+            <xs:complexType name="Uzivatelske-vazbyIdType">
+                <xs:simpleContent>
+                    <xs:extension base="Uzivatelske-vazbyIdTypeInner">
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="Uzivatelske-vazbyPopisTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="xs:string"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="Uzivatelske-vazbyPopisType">
+                <xs:simpleContent>
+                    <xs:extension base="Uzivatelske-vazbyPopisTypeInner">
+                            <xs:attribute name="previousValue" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="Uzivatelske-vazbyPoznamTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="xs:string"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="Uzivatelske-vazbyPoznamType">
+                <xs:simpleContent>
+                    <xs:extension base="Uzivatelske-vazbyPoznamTypeInner">
+                            <xs:attribute name="previousValue" type="xs:string"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="Uzivatelske-vazbyVazbaTypTypeInner">
+        <xs:union>
+            <xs:simpleType>
+                        <xs:restriction base="fbId"/>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value=""/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+                </xs:simpleType>
+
+            <xs:complexType name="Uzivatelske-vazbyVazbaTypType">
+                <xs:simpleContent>
+                    <xs:extension base="Uzivatelske-vazbyVazbaTypTypeInner">
+                            <xs:attribute name="if-not-found" type="fbIfNotFoundMode"/>
+                            <xs:attribute name="previousValue" type="fbId"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+    <xs:element name="winstrom">
+        <xs:complexType>
+            <xs:sequence>
+    <xs:element name="rezervace" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+            <xs:documentation>Rezervace</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence> 
+                        <xs:element name="id" type="IdType" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                    <xs:documentation>ID</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="datumOd" type="DatumOdType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Datum vzniku</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="datumDo" type="DatumDoType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Datum zániku</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="mnozstvi" type="MnozstviType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Množství</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="poznamka" type="PoznamkaType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Poznámka</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="firma" type="FirmaType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Vazba na firmu v adresáři. Pokud není vyplněna, měly by být vyplněny položky s detailními informacemi o firmě.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="cenik" type="CenikType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Ceník</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="sklad" type="SkladType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Sklad</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="polObch" type="PolObchType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Obchodní položka</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+
+                    <xs:element name="uzivatelske-vazby" minOccurs="0" maxOccurs="1">
+                        <xs:complexType>
+                            <xs:sequence>
+    <xs:element name="uzivatelska-vazba" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+            <xs:documentation>Navázané záznamy</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence> 
+                        <xs:element name="id" type="Uzivatelske-vazbyIdType" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                    <xs:documentation>ID</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="popis" type="Uzivatelske-vazbyPopisType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Popis vazby</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="poznam" type="Uzivatelske-vazbyPoznamType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Poznámka k vazbě</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="vazbaTyp" type="Uzivatelske-vazbyVazbaTypType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Typ vazby</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+
+            </xs:sequence>
+
+            <xs:attribute name="create" type="fbImportMode"/>
+            <xs:attribute name="update" type="fbImportMode"/>
+        </xs:complexType>
+    </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="removeAll" type="fbBoolean"/>
+                        </xs:complexType>
+                    </xs:element>
+            </xs:sequence>
+
+            <xs:attribute name="create" type="fbImportMode"/>
+            <xs:attribute name="update" type="fbImportMode"/>
+        </xs:complexType>
+    </xs:element>
+            </xs:sequence>
+            <xs:attribute name="version">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="1.0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="atomic" type="fbBoolean"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<winstrom xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <rezervace>
+    <mnozstvi>1</mnozstvi>
+    <poznamka>Objednávka 3361</poznamka>
+    <firma>ext:CIN:C212041</firma>
+    <cenik>ext:CIN:P468</cenik>
+    <sklad>code:BYT</sklad>
+  </rezervace>
+  <rezervace>
+    <mnozstvi>1</mnozstvi>
+    <poznamka>Objednávka 3361</poznamka>
+    <firma>ext:CIN:C212041</firma>
+    <cenik>ext:CIN:P432</cenik>
+    <sklad>code:BYT</sklad>
+  </rezervace>
+  <rezervace>
+    <mnozstvi>1</mnozstvi>
+    <poznamka>Objednávka 3361</poznamka>
+    <firma>ext:CIN:C212041</firma>
+    <cenik>ext:CIN:P110</cenik>
+    <sklad>code:BYT</sklad>
+  </rezervace>
+  <rezervace>
+    <mnozstvi>1</mnozstvi>
+    <poznamka>Objednávka 3361</poznamka>
+    <firma>ext:CIN:C212041</firma>
+    <cenik>ext:CIN:P401</cenik>
+    <sklad>code:BYT</sklad>
+  </rezervace>
+</winstrom>

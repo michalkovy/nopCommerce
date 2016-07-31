@@ -22,6 +22,7 @@ namespace Nop.Data
             : base(nameOrConnectionString)
         {
             //((IObjectContextAdapter) this).ObjectContext.ContextOptions.LazyLoadingEnabled = true;
+            ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = 3600; //60 minutes
         }
         
         #endregion

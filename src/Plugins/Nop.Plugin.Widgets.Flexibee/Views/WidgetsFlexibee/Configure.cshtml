@@ -1,0 +1,166 @@
+﻿@{
+    Layout = "";
+}
+@model Nop.Plugin.Widgets.Flexibee.Models.ConfigurationModel
+@using Nop.Web.Framework;
+@using Nop.Plugin.Widgets.Flexibee.Models;
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.ZoneId):
+            </td>
+            <td class="adminData">
+                @Html.DropDownListFor(model => model.ZoneId, Model.AvailableZones)
+                @Html.ValidationMessageFor(model => model.ZoneId)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.FlexibeeExternalIdPrefix):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.FlexibeeExternalIdPrefix)
+                @Html.ValidationMessageFor(model => model.FlexibeeExternalIdPrefix)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.OrderId):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.OrderId)
+                @Html.ValidationMessageFor(model => model.OrderId)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" width="100%">
+                <button type="submit" name="save" value="save" class="t-button">
+                    @T("Admin.Common.Save")
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" width="100%">
+                <button type="submit" name="uploadOrders" value="uploadOrders" class="t-button">
+                    @T("Plugins.Widgets.Flexibee.UploadOrders")
+                </button>
+                <button type="submit" name="uploadProducts" value="uploadProducts" class="t-button">
+                    @T("Plugins.Widgets.Flexibee.UploadProducts")
+                </button>
+                <button type="submit" name="downloadStock" value="downloadStock" class="t-button">
+                    @T("Plugins.Widgets.Flexibee.DownloadStock")
+                </button>
+                <button type="submit" name="updateStoreOrder" value="updateStoreOrder" class="t-button">
+                    @T("Plugins.Widgets.Flexibee.UpdateStoreOrder")
+                </button>
+            </td>
+        </tr>
+        @if (!String.IsNullOrEmpty(Model.IntegrationResult))
+        {
+            <tr class="adminSeparator">
+                <td colspan="2">
+                    <hr />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" width="100%">
+                    <b>@Html.Raw(Model.IntegrationResult)</b>
+                </td>
+            </tr>
+        }
+    </table>
+}
+<table class="adminContent">
+    <tr>
+        <td>
+            <div id="manufacturer-grid"></div>
+
+            <script>
+    $(document).ready(function () {
+        $("#manufacturer-grid").kendoGrid({
+            dataSource: {
+                type: "json",
+                transport: {
+                    read: {
+                        url: "@Html.Raw(Url.Action("ManufacturerList", "WidgetsFlexibee"))",
+                        type: "POST",
+                        dataType: "json"
+                    },
+                    update: {
+                        url:"@Html.Raw(Url.Action("ManufacturerUpdate", "WidgetsFlexibee"))",
+                        type: "POST",
+                        dataType: "json"
+                    }
+                },
+                schema: {
+                    data: "Data",
+                    total: "Total",
+                    errors: "Errors",
+                    model: {
+                        id: "ManufacturerId",
+                        fields: {
+                            ManufacturerName: { editable: false, type: "string" },
+                            ManufacturerFlexibeeCode: { editable: true, type: "string" },
+                            SupplierFlexibeeCode: { editable: true, type: "string" },
+                            CurrencyCode: { editable: true, type: "string" },
+                            ManufacturerId: { editable: false, type: "number" }
+                        }
+                    }
+                },
+                requestEnd: function (e) {
+                    if (e.type == "update") {
+                        this.read();
+                    }
+                },
+                error: function (e) {
+                    display_kendoui_grid_error(e);
+                    // Cancel the changes
+                    this.cancelChanges();
+                },
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true
+            },
+            pageable: {
+                refresh: true,
+                numeric: false,
+                previousNext: false,
+                info: false
+            },
+            editable: {
+                confirmation: false,
+                mode: "inline"
+            },
+            scrollable: false,
+            columns: [{
+                field: "ManufacturerName",
+                title: "@T("Nop.Plugin.Widgets.Flexibee.Fields.ManufacturerName")",
+                width: 100
+            }, {
+                field: "ManufacturerFlexibeeCode",
+                title: "@T("Nop.Plugin.Widgets.Flexibee.Fields.ManufacturerFlexibeeCode")",
+                width: 100
+            }, {
+                field: "SupplierFlexibeeCode",
+                title: "@T("Nop.Plugin.Widgets.Flexibee.Fields.SupplierFlexibeeCode")",
+                width: 100
+            }, {
+                field: "CurrencyCode",
+                title: "@T("Nop.Plugin.Widgets.Flexibee.Fields.CurrencyCode")",
+                width: 100
+            }, {
+                command: [{
+                    name: "edit",
+                    text: "@T("Admin.Common.Edit")"
+                }],
+                width: 100
+            }]
+        });
+    });
+</script>
+        </td>
+    </tr>
+</table>

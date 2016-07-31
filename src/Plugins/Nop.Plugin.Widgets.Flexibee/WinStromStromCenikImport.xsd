@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="fbId">
+        <xs:union>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="([0-9]+)"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="((ext:[^:]+:.+)|(code:.+)|(uuid:.+)|(ean:.+)|(plu:.+)|(vatid:.+)|(ws:.+)|(in:.+)|(key:.+))"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="(\[(([0-9]+)|((ext:[^:]+:.+)|(code:.+)|(uuid:.+)|(ean:.+)|(plu:.+)|(vatid:.+)|(ws:.+)|(in:.+)|(key:.+)))\])+"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:union>
+    </xs:simpleType>
+
+    <xs:simpleType name="fbBoolean">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="fbImportMode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ok"/>
+            <xs:enumeration value="ignore"/>
+            <xs:enumeration value="fail"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="fbIfNotFoundMode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="null"/>
+            <xs:enumeration value="fail"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+
+
+                <xs:simpleType name="IdTypeInner">
+                        <xs:restriction base="fbId"/>
+                </xs:simpleType>
+
+            <xs:complexType name="IdType">
+                <xs:simpleContent>
+                    <xs:extension base="IdTypeInner">
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="IdZaznamuTypeInner">
+                        <xs:restriction base="xs:integer"/>
+                </xs:simpleType>
+
+            <xs:complexType name="IdZaznamuType">
+                <xs:simpleContent>
+                    <xs:extension base="IdZaznamuTypeInner">
+                            <xs:attribute name="previousValue" type="xs:integer"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+
+                <xs:simpleType name="UzelTypeInner">
+                        <xs:restriction base="fbId"/>
+                </xs:simpleType>
+
+            <xs:complexType name="UzelType">
+                <xs:simpleContent>
+                    <xs:extension base="UzelTypeInner">
+                            <xs:attribute name="if-not-found" type="fbIfNotFoundMode"/>
+                            <xs:attribute name="previousValue" type="fbId"/>
+                    </xs:extension>
+                </xs:simpleContent>
+            </xs:complexType>
+
+
+    <xs:element name="winstrom">
+        <xs:complexType>
+            <xs:sequence>
+    <xs:element name="strom-cenik" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+            <xs:documentation>#_title</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence> 
+                        <xs:element name="id" type="IdType" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                    <xs:documentation>ID</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="idZaznamu" type="IdZaznamuType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation></xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="uzel" type="UzelType" minOccurs="0">
+                            <xs:annotation>
+                                    <xs:documentation>Strom</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+
+            </xs:sequence>
+
+            <xs:attribute name="create" type="fbImportMode"/>
+            <xs:attribute name="update" type="fbImportMode"/>
+        </xs:complexType>
+    </xs:element>
+            </xs:sequence>
+            <xs:attribute name="version">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="1.0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="atomic" type="fbBoolean"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
