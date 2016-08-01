@@ -6045,6 +6045,12 @@
   <LocaleResource Name="Admin.Configuration.Settings.Media.VendorThumbPictureSize.Hint">
     <Value>The default size (pixels) for vendor thumbnail images.</Value>
   </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.Settings.Mode.Basic">
+    <Value>Basic</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.Settings.Mode.Advanced">
+    <Value>Advanced</Value>
+  </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.News">
     <Value>News settings</Value>
   </LocaleResource>
@@ -6455,6 +6461,9 @@
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.ProductEditor.ManufacturerPartNumber">
     <Value>Manufacturer part number</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.Configuration.Settings.ProductEditor.Manufacturers">
+    <Value>Manufacturers</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.ProductEditor.MarkAsNew">
     <Value>Mark as new</Value>
