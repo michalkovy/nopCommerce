@@ -683,6 +683,7 @@
     <Content Include="Themes\Kralicek\Content\images\close.png" />
     <Content Include="Themes\Kralicek\Content\images\compare-button.png" />
     <Content Include="Themes\Kralicek\Content\images\details.png" />
+    <Content Include="Themes\Kralicek\Content\images\discontinued-product-icon.png" />
     <Content Include="Themes\Kralicek\Content\images\download-button.png" />
     <Content Include="Themes\Kralicek\Content\images\edit.png" />
     <Content Include="Themes\Kralicek\Content\images\edit_.png" />
@@ -717,6 +718,10 @@
     <Content Include="Themes\Kralicek\Content\images\topic-type3.png" />
     <Content Include="Themes\Kralicek\Content\images\view-grid.png" />
     <Content Include="Themes\Kralicek\Content\images\view-list.png" />
+    <Content Include="Themes\Kralicek\Content\images\vote-down.png" />
+    <Content Include="Themes\Kralicek\Content\images\vote-down-selected.png" />
+    <Content Include="Themes\Kralicek\Content\images\vote-up.png" />
+    <Content Include="Themes\Kralicek\Content\images\vote-up-selected.png" />
     <Content Include="Themes\Kralicek\Content\images\watch.png" />
     <Content Include="Themes\Kralicek\Content\images\wishlist-button.png" />
     <Content Include="Themes\Kralicek\preview.jpg" />
@@ -730,6 +735,7 @@
     <Content Include="Themes\KvalitniKlece\Content\images\close.png" />
     <Content Include="Themes\KvalitniKlece\Content\images\compare-button.png" />
     <Content Include="Themes\KvalitniKlece\Content\images\details.png" />
+    <Content Include="Themes\KvalitniKlece\Content\images\discontinued-product-icon.png" />
     <Content Include="Themes\KvalitniKlece\Content\images\download-button.png" />
     <Content Include="Themes\KvalitniKlece\Content\images\edit.png" />
     <Content Include="Themes\KvalitniKlece\Content\images\edit_.png" />
@@ -764,6 +770,10 @@
     <Content Include="Themes\KvalitniKlece\Content\images\topic-type3.png" />
     <Content Include="Themes\KvalitniKlece\Content\images\view-grid.png" />
     <Content Include="Themes\KvalitniKlece\Content\images\view-list.png" />
+    <Content Include="Themes\KvalitniKlece\Content\images\vote-down.png" />
+    <Content Include="Themes\KvalitniKlece\Content\images\vote-down-selected.png" />
+    <Content Include="Themes\KvalitniKlece\Content\images\vote-up.png" />
+    <Content Include="Themes\KvalitniKlece\Content\images\vote-up-selected.png" />
     <Content Include="Themes\KvalitniKlece\Content\images\watch.png" />
     <Content Include="Themes\KvalitniKlece\Content\images\wishlist-button.png" />
     <Content Include="Themes\KvalitniKlece\preview.jpg" />
@@ -777,6 +787,7 @@
     <Content Include="Themes\Morcatko\Content\images\close.png" />
     <Content Include="Themes\Morcatko\Content\images\compare-button.png" />
     <Content Include="Themes\Morcatko\Content\images\details.png" />
+    <Content Include="Themes\Morcatko\Content\images\discontinued-product-icon.png" />
     <Content Include="Themes\Morcatko\Content\images\download-button.png" />
     <Content Include="Themes\Morcatko\Content\images\edit.png" />
     <Content Include="Themes\Morcatko\Content\images\edit_.png" />
@@ -811,6 +822,10 @@
     <Content Include="Themes\Morcatko\Content\images\topic-type3.png" />
     <Content Include="Themes\Morcatko\Content\images\view-grid.png" />
     <Content Include="Themes\Morcatko\Content\images\view-list.png" />
+    <Content Include="Themes\Morcatko\Content\images\vote-down.png" />
+    <Content Include="Themes\Morcatko\Content\images\vote-down-selected.png" />
+    <Content Include="Themes\Morcatko\Content\images\vote-up.png" />
+    <Content Include="Themes\Morcatko\Content\images\vote-up-selected.png" />
     <Content Include="Themes\Morcatko\Content\images\watch.png" />
     <Content Include="Themes\Morcatko\Content\images\wishlist-button.png" />
     <Content Include="Themes\Morcatko\preview.jpg" />
@@ -824,6 +839,7 @@
     <Content Include="Themes\Osmacek\Content\images\close.png" />
     <Content Include="Themes\Osmacek\Content\images\compare-button.png" />
     <Content Include="Themes\Osmacek\Content\images\details.png" />
+    <Content Include="Themes\Osmacek\Content\images\discontinued-product-icon.png" />
     <Content Include="Themes\Osmacek\Content\images\download-button.png" />
     <Content Include="Themes\Osmacek\Content\images\edit.png" />
     <Content Include="Themes\Osmacek\Content\images\edit_.png" />
@@ -858,6 +874,10 @@
     <Content Include="Themes\Osmacek\Content\images\topic-type3.png" />
     <Content Include="Themes\Osmacek\Content\images\view-grid.png" />
     <Content Include="Themes\Osmacek\Content\images\view-list.png" />
+    <Content Include="Themes\Osmacek\Content\images\vote-down.png" />
+    <Content Include="Themes\Osmacek\Content\images\vote-down-selected.png" />
+    <Content Include="Themes\Osmacek\Content\images\vote-up.png" />
+    <Content Include="Themes\Osmacek\Content\images\vote-up-selected.png" />
     <Content Include="Themes\Osmacek\Content\images\watch.png" />
     <Content Include="Themes\Osmacek\Content\images\wishlist-button.png" />
     <Content Include="Themes\Osmacek\preview.jpg" />
@@ -871,6 +891,7 @@
     <Content Include="Themes\Saskia\Content\images\close.png" />
     <Content Include="Themes\Saskia\Content\images\compare-button.png" />
     <Content Include="Themes\Saskia\Content\images\details.png" />
+    <Content Include="Themes\Saskia\Content\images\discontinued-product-icon.png" />
     <Content Include="Themes\Saskia\Content\images\download-button.png" />
     <Content Include="Themes\Saskia\Content\images\edit.png" />
     <Content Include="Themes\Saskia\Content\images\edit_.png" />
@@ -905,6 +926,10 @@
     <Content Include="Themes\Saskia\Content\images\topic-type3.png" />
     <Content Include="Themes\Saskia\Content\images\view-grid.png" />
     <Content Include="Themes\Saskia\Content\images\view-list.png" />
+    <Content Include="Themes\Saskia\Content\images\vote-down.png" />
+    <Content Include="Themes\Saskia\Content\images\vote-down-selected.png" />
+    <Content Include="Themes\Saskia\Content\images\vote-up.png" />
+    <Content Include="Themes\Saskia\Content\images\vote-up-selected.png" />
     <Content Include="Themes\Saskia\Content\images\watch.png" />
     <Content Include="Themes\Saskia\Content\images\wishlist-button.png" />
     <Content Include="Themes\Saskia\preview.jpg" />
