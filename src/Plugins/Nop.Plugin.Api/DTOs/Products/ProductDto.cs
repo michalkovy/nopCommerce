@@ -224,6 +224,12 @@ namespace Nop.Plugin.Api.DTOs.Products
         public bool? IsTaxExempt { get; set; }
 
         /// <summary>
+        /// Id of tax category
+        /// </summary>
+        [JsonProperty("tax_category_id")]
+        public int? TaxCategoryId { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether the product is telecommunications or broadcasting or electronic services
         /// </summary>
         [JsonProperty("is_telecommunications_or_broadcasting_or_electronic_services")]

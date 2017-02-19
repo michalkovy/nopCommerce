@@ -162,7 +162,11 @@ namespace Nop.Plugin.Api.Controllers
                 // because the picture may be passed with src and the result should only include the base64 format.
                 image = new ImageDto()
                 {
-                    Attachment = Convert.ToBase64String(picture.PictureBinary)
+                    // let's not send image for this time, just the data for url creation
+                    //Attachment = Convert.ToBase64String(picture.PictureBinary)
+                    PictureId = picture.Id,
+                    MimeType = picture.MimeType,
+                    SeoFilename = picture.SeoFilename
                 };
             }
 

@@ -9,6 +9,9 @@ namespace Nop.Plugin.Api.DTOs.Images
         [JsonProperty("id")]
         public int Id { get; set; }
 
+        [JsonProperty("picture_id")]
+        public int PictureId { get; set; }
+
         [JsonProperty("position")]
         public int Position { get; set; }
 
@@ -21,7 +24,13 @@ namespace Nop.Plugin.Api.DTOs.Images
         [JsonIgnore]
         public byte[] Binary { get; set; }
 
-        [JsonIgnore]
+        [JsonProperty("mime_type")]
         public string MimeType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the SEO friednly filename of the picture
+        /// </summary>
+        [JsonProperty("seo_filename")]
+        public string SeoFilename { get; set; }
     }
 }
