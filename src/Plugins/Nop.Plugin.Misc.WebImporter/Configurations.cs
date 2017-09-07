@@ -316,6 +316,7 @@ concat(
 
         public static WebClient GetClient(WebImporterSite configuration)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
             var client = configuration.UseProxy ? Configurations.GetWebClientProxy() : Configurations.GetWebClientClean();
             client.Encoding = Encoding.GetEncoding(configuration.Encoding);
             return client;
