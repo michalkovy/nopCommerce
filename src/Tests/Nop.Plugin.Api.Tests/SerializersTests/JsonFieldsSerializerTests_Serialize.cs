@@ -42,14 +42,13 @@ namespace Nop.Plugin.Api.Tests.SerializersTests
         }
         
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void WhenNullObjectToSerializePassed_ShouldThrowArgumentNullException()
         {
             //Arange
             IJsonFieldsSerializer cut = new JsonFieldsSerializer();
 
             //Act
-            cut.Serialize(Arg<ISerializableObject>.Is.Null, Arg<string>.Is.Anything);
+            Assert.Throws<ArgumentNullException>(() => cut.Serialize(Arg<ISerializableObject>.Is.Null, Arg<string>.Is.Anything));
         }
 
         [Test]
