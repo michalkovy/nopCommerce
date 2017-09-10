@@ -28,6 +28,7 @@
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>f94c814a</NuGetPackageImportStamp>
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -620,10 +621,7 @@
     <Content Include="Content\samples\product_IfYouWait_1.zip" />
     <Content Include="Content\samples\product_NightVision_1.zip" />
     <Content Include="Content\samples\product_ScienceAndFaith_1.zip" />
-    <None Include="Properties\PublishProfiles\AzureSaskiaCincilka.pubxml" />
-    <None Include="Properties\PublishProfiles\Local.pubxml" />
-    <None Include="Properties\PublishProfiles\Production.pubxml" />
-    <None Include="Properties\PublishProfiles\saskiacincilka.pubxml" />
+    <None Include="Properties\PublishProfiles\SaskiaCincilka - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\fineuploader\iframe.xss.response-4.2.2.js" />
     <Content Include="Scripts\fineuploader\jquery.fineuploader-4.2.2.js" />

@@ -170,7 +170,7 @@ namespace Nop.MichalKovac.Tests
             Assert.AreEqual(365M * Configurations.GetConfiguration(SupportedSite.Zacuto).EndPriceWithouTaxMultiplication, product.Price);
             Assert.AreEqual(365M * 0.65M, product.ProductCost);
             Assert.AreEqual("The C100 Z-Finder Pro is an optical viewfinder, specifically designed to attach to the Canon C100 cinema camera LCD.", product.ShortDescription);
-            Assert.AreEqual("Z-FIND-C1, c100 Z-finder pro, canon c100, viewfinder, zacuto, zfinder, c100, c100 zfinder", product.MetaKeywords);
+            //Assert.AreEqual("Z-FIND-C1, c100 Z-finder pro, canon c100, viewfinder, zacuto, zfinder, c100, c100 zfinder", product.MetaKeywords);
         }
 
         [TestMethod]
@@ -216,6 +216,14 @@ namespace Nop.MichalKovac.Tests
             Assert.AreEqual(1050M* Configurations.GetConfiguration(SupportedSite.Zacuto).EndPriceWithouTaxMultiplication, product.Price);
             Assert.AreEqual("An extremely accurate follow focus that allows the operator or assistant to pull focus. Includes a complete gear driven, multiple gear pitches and more.", product.ShortDescription);
             Assert.AreEqual("zacuto, dslr rigs, optical viewfinder, evf, Z-Finder, camera accessories, Z-Focus V2", product.MetaKeywords);
+        }
+
+        [TestMethod]
+        public void ImportZacutoYCable()
+        {
+
+            var product = ImportZacutoProduct(@"https://store.zacuto.com/canon-y-cable/");
+            Assert.AreEqual("Canon Y Cable for Canon zoom and focus controls", product.ShortDescription);
         }
 
         [TestMethod]
@@ -379,9 +387,9 @@ namespace Nop.MichalKovac.Tests
             var parser = Nop.Plugin.Misc.WebImporter.PageParser.CreatePageParser(client, testPage);
             
             var pictures = loader.GetPictureUris(parser);
-            Assert.AreEqual(@"http://store.zacuto.com/images/products/z-find-c1.jpg", pictures[0].AbsoluteUri);
+            Assert.AreEqual(@"https://store.zacuto.com/images/products/z-find-c1.jpg", pictures[0].AbsoluteUri);
             Assert.AreEqual(8, pictures.Count);
-            Assert.AreEqual(@"http://store.zacuto.com/images/products/secondary/z-find-c1-3.jpg", pictures[2].AbsoluteUri);
+            Assert.AreEqual(@"https://store.zacuto.com/images/products/secondary/z-find-c1-5.jpg", pictures[2].AbsoluteUri);
         }
 
         private Nop.Core.Domain.Catalog.Product ImportZacutoProduct(string url)
@@ -427,13 +435,21 @@ namespace Nop.MichalKovac.Tests
         [TestMethod]
         public void ImportZacutoCategory()
         {
-            var testPage = new Uri(@"http://store.zacuto.com/okii/");
+            var testPage = new Uri(@"https://store.zacuto.com/follow-focus/");
             var settings = Nop.Plugin.Misc.WebImporter.Configurations.GetConfiguration(SupportedSite.Zacuto);
             var loader = new Nop.Plugin.Misc.WebImporter.PageLoader(settings);
             var client = Configurations.GetClient(settings);
             var parser = Nop.Plugin.Misc.WebImporter.PageParser.CreatePageParser(client, testPage);
 
             Assert.IsNull(loader.GetNextPageUri(parser));
+            
+
+            testPage = new Uri(@"https://store.zacuto.com/z-finder-products/");
+            parser = Nop.Plugin.Misc.WebImporter.PageParser.CreatePageParser(client, testPage);
+            var nextPage = loader.GetNextPageUri(parser);
+            Assert.AreEqual(@"https://store.zacuto.com/z-finder-products-page-2/", nextPage.AbsoluteUri);
+            var uris = loader.GetProductDetailsUris(parser);
+            Assert.AreEqual(18, uris.Count);
         }
 
         [TestMethod]

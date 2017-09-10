@@ -23,31 +23,31 @@ namespace Nop.Plugin.Misc.WebImporter
         private static WebImporterSite CreateZacutoConfiguration()
         {
             var settings = new Nop.Plugin.Misc.WebImporter.Domain.WebImporterSite();
-            settings.FullDescriptionExpression = @"//div[@itemprop='description'] | //div[starts-with(@class,'product-video')]/div[@class='product-page-block-content spacer']";
-            settings.ProductNameExpression = "string(//div[@class='gap-right lol']/h1[@itemprop='name'])";
-            settings.ProductSkuExpression = @"Extensions:replace(string(//div[@class='gap-right lol']/div[@class='product-id ']), '^Product ID : (.*)$', '$1')";
-            settings.PriceExpression = @"number(Extensions:replace(Extensions:replace(string(//div[@class='gap-right lol']/div[@class='product-price ']/div[@itemprop='price']/span[@id='product_price']), '\$', ''), ',', ''))";
-            settings.PriceOrigExpression = @"number(Extensions:replace(Extensions:replace(string(//div[@class='gap-right lol']/div[@class='product-price ']/div[@itemprop='price']/span[@id='product_price2']), '\$', ''), ',', ''))";
+            settings.FullDescriptionExpression = @"//div[@class='product-description product-page-block ']/div[@class='product-page-block-content spacer'] | //div[starts-with(@class,'product-video')]/div[@class='product-page-block-content spacer']";
+            settings.ProductNameExpression = "string(//div[@class='subsection pit']/div[@class='second-title-output'])";
+            settings.ProductSkuExpression = @"Extensions:replace(string(//div[@class='subsection pit']/div[@class='product-id ']), '^Product ID : (.*)$', '$1')";
+            settings.PriceExpression = @"number(Extensions:replace(Extensions:replace(string(//div[@class='subsection pit']/div[@class='product-price ']/div[@class='price']/span[@id='product_price']), '\$', ''), ',', ''))";
+            settings.PriceOrigExpression = @"number(Extensions:replace(Extensions:replace(string(//div[@class='subsection pit']/div[@class='product-price ']/div[@class='price2']/span[@id='product_price2']), '\$', ''), ',', ''))";
             settings.PriceCostExpression = @"0.65*number(concat(
   substring(Extensions:replace(string(//div[@itemprop='description'] | //div[starts-with(@class,'product-video')]/div[@class='product-page-block-content spacer']), '^.*List Price: \$(\d+).*$','$1'), 1, number(contains(string(//div[@itemprop='description'] | //div[starts-with(@class,'product-video')]/div[@class='product-page-block-content spacer']), 'List Price: '))      * string-length(Extensions:replace(string(//div[@itemprop='description'] | //div[starts-with(@class,'product-video')]/div[@class='product-page-block-content spacer']), '^.*List Price: \$(\d+).*$','$1'))),
-  substring(Extensions:replace(Extensions:replace(string(//div[@class='gap-right lol']/div[@class='product-price ']/div[@itemprop='price']/span[@id='product_price']), '\$', ''), ',', ''), 1, number(not(contains(string(//div[@itemprop='description'] | //div[starts-with(@class,'product-video')]/div[@class='product-page-block-content spacer']), 'List Price: '))) * string-length(Extensions:replace(Extensions:replace(string(//div[@class='gap-right lol']/div[@class='product-price ']/div[@itemprop='price']/span[@id='product_price']), '\$', ''), ',', '')))
+  substring(Extensions:replace(Extensions:replace(string(//div[@class='subsection pit']/div[@class='product-price ']/div[@class='price']/span[@id='product_price']), '\$', ''), ',', ''), 1, number(not(contains(string(//div[@itemprop='description'] | //div[starts-with(@class,'product-video')]/div[@class='product-page-block-content spacer']), 'List Price: '))) * string-length(Extensions:replace(Extensions:replace(string(//div[@class='subsection pit']/div[@class='product-price ']/div[@class='price']/span[@id='product_price']), '\$', ''), ',', '')))
 ))";
             
             //"0.65*number(Extensions:replace(string(//div[@itemprop='description'] | //div[starts-with(@class,'product-video')]/div[@class='product-page-block-content spacer']), '^.*List Price: \$(\d+).*$','$1') )";
             //if (/dgfh/retr) then Extensions:replace(Extensions:replace(string(//div[@class='gap-right lol']/div[@class='product-price ']/div[@itemprop='price']/span[@id='product_price']), '\$', ''), ',', '') else 
-            settings.ShortDescriptionExpression = "Extensions:replace(string(/html/head/meta[@name='description']/@content),'Shop.*day!', '')";
+            settings.ShortDescriptionExpression = "Extensions:replace(Extensions:replace(string(/html/head/meta[@name='description']/@content),'Shop.*day!', ''), 'Buy high quality filmmaking accessories by Zacuto. Explore our store catalog or call us today for more details.', '')";
             settings.KeywordsExpression = "string(/html/head/meta[@name='keywords']/@content)";
             settings.FirstImageExpression = "string(/html/head/meta[@property='og:image']/@content)";
-            settings.OtherImagesExpression = @"//div[@id='images']/a[@class='productSecondary']/img/@src";
-            settings.ManufacturerExpression = @"Extensions:replace(string(//div[@class='gap-right lol']/comment()[1]), '^.*Manufacturer: ([^<]*).*$', '$1')";
+            settings.OtherImagesExpression = @"//div[@class='product-image ']/div[@class='gallery']/ul/li/a/img[@alt='']/@src";
+            settings.ManufacturerExpression = @"Extensions:replace(string(//div[@class='subsection pit']/comment()[1]), '^.*Manufacturer: ([^<]*).*$', '$1')";
             settings.CategoryUrlExpression = @"//span[@class='product-bread-crumbs ']/a[last()]";
             settings.WeightExpression = "number(Extensions:replace(string(//div[@id='content']/div/script/text()), '^.*var product_weight = ([^;]*).*$', '$1'))";
             settings.EndWeightMultiplication = 0.45359237M; //lbs
 
             settings.CategoryUrlsExpression = "//div[starts-with(@class, 'panel-catalog-categories')]/div/ul[starts-with(@class, 'tree')]/li/a";
             settings.NextPageExpression = @"string(//a[.='Next &gt;&gt;']/@href)";
-            settings.ProductDetailsExpression = "//h5[@itemprop='name']/a/@href";
-            settings.BaseUrl = @"http://store.zacuto.com/";
+            settings.ProductDetailsExpression = "//div[@class='cp-top']/div[@class='catalog-product-title']/a/@href";
+            settings.BaseUrl = @"https://store.zacuto.com/";
 
             settings.EndPriceWithouTaxMultiplication = 26M;
             settings.LanguageId = null;
