@@ -458,7 +458,8 @@ Your store {0}", store);
             result += OrderExport(flexibeeExternalIdPrefix, countryService, order, order.Customer, taxService, out polozkyObjednavky);
             if (!reexport)
             {
-                result += ReservationExport(orderService, flexibeeExternalIdPrefix, countryService, order, order.Customer);
+                // reservations are overhead for us now
+                //result += ReservationExport(orderService, flexibeeExternalIdPrefix, countryService, order, order.Customer);
 
                 if (order.PaymentMethodSystemName == "Payments.PurchaseOrder")
                 {
