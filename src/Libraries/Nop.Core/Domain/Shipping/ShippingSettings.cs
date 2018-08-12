@@ -3,6 +3,9 @@ using Nop.Core.Configuration;
 
 namespace Nop.Core.Domain.Shipping
 {
+    /// <summary>
+    /// Shipping settings
+    /// </summary>
     public class ShippingSettings : ISettings
     {
         public ShippingSettings()
@@ -40,7 +43,7 @@ namespace Nop.Core.Domain.Shipping
         /// Gets or sets Google map API key
         /// </summary>
         public string GoogleMapsApiKey { get; set; }
-        
+
         /// <summary>
         /// Gets or sets a value indicating whether the system should use warehouse location when requesting shipping rates
         /// This is useful when you ship from multiple warehouses
@@ -77,10 +80,16 @@ namespace Nop.Core.Domain.Shipping
         /// A value indicating whether customers should see shipment events on their order details pages
         /// </summary>
         public bool DisplayShipmentEventsToCustomers { get; set; }
+
         /// <summary>
         /// A value indicating whether store owner should see shipment events on the shipment details pages
         /// </summary>
         public bool DisplayShipmentEventsToStoreOwner { get; set; }
+
+        /// <summary>
+        /// A value indicating whether should hide "Shipping total" label if shipping not required
+        /// </summary>
+        public bool HideShippingTotal { get; set; }
 
         /// <summary>
         /// Gets or sets shipping origin address
@@ -88,7 +97,7 @@ namespace Nop.Core.Domain.Shipping
         public int ShippingOriginAddressId { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether we should return valid options if there are any (no matter of the errors returned by other shipping rate compuation methods).
+        /// Gets or sets a value indicating whether we should return valid options if there are any (no matter of the errors returned by other shipping rate computation methods).
         /// </summary>
         public bool ReturnValidOptionsIfThereAreAny { get; set; }
 
@@ -101,5 +110,15 @@ namespace Nop.Core.Domain.Shipping
         /// Gets or sets a value indicating whether dimensions are calculated based on cube root of volume
         /// </summary>
         public bool UseCubeRootMethod { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to consider associated products dimensions and weight on shipping, false if main product includes them
+        /// </summary>
+        public bool ConsiderAssociatedProductsDimensions { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to send all the items of a product marked as "Ship Separately" separately; if false, all the items of a such product will be shipped in a single box, but separately from the other order items
+        /// </summary>
+        public bool ShipSeparatelyOneItemEach { get; set; }
     }
 }

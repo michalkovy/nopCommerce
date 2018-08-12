@@ -1,7 +1,12 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Moq;
+using Nop.Core;
 using Nop.Core.Configuration;
 using Nop.Core.Infrastructure;
+using Nop.Core.Plugins;
 using Nop.Services.Events;
 using NUnit.Framework;
 
@@ -10,23 +15,21 @@ namespace Nop.Web.MVC.Tests.Events
     [TestFixture]
     public class EventsTests
     {
-        private NopEngine _engine;
         private IEventPublisher _eventPublisher;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
-            _engine = new NopEngine();
-            _engine.Initialize(new NopConfig());
-            _eventPublisher = _engine.Resolve<IEventPublisher>();
-        }
+            var hostingEnvironment = new Mock<IHostingEnvironment>();
+            hostingEnvironment.Setup(x => x.ContentRootPath).Returns(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            hostingEnvironment.Setup(x => x.WebRootPath).Returns(System.IO.Directory.GetCurrentDirectory());
+            CommonHelper.DefaultFileProvider = new NopFileProvider(hostingEnvironment.Object);
+            PluginManager.Initialize(new ApplicationPartManager(), new NopConfig());
 
-        [Test]
-        public void Can_find_consumers()
-        {
-            var types = _engine.ResolveAll<IConsumer<DateTime>>().ToList();
-            Assert.AreEqual(1, types.Count);
-            Assert.IsInstanceOf<DateTimeConsumer>(types[0]);
+            var subscriptionService = new Mock<ISubscriptionService>();
+            var consumers = new List<IConsumer<DateTime>> {new DateTimeConsumer()};
+            subscriptionService.Setup(c => c.GetSubscriptions<DateTime>()).Returns(consumers);
+            _eventPublisher = new EventPublisher(subscriptionService.Object);
         }
 
         [Test]
@@ -37,7 +40,6 @@ namespace Nop.Web.MVC.Tests.Events
 
             var newDateTime = DateTime.Now.Subtract(TimeSpan.FromDays(5));
             _eventPublisher.Publish(newDateTime);
-
             Assert.AreEqual(DateTimeConsumer.DateTime, newDateTime);
         }
     }

@@ -1,8 +1,7 @@
-﻿
-namespace Nop.Services.Events
+﻿namespace Nop.Services.Events
 {
     /// <summary>
-    /// Evnt publisher
+    /// Event publisher
     /// </summary>
     public interface IEventPublisher
     {

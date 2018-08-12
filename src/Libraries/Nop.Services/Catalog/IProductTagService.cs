@@ -19,6 +19,13 @@ namespace Nop.Services.Catalog
         /// </summary>
         /// <returns>Product tags</returns>
         IList<ProductTag> GetAllProductTags();
+        
+        /// <summary>
+        /// Gets all product tags by product identifier
+        /// </summary>
+        /// <param name="productId">Product identifier</param>
+        /// <returns>Product tags</returns>
+        IList<ProductTag> GetAllProductTagsByProductId(int productId);
 
         /// <summary>
         /// Gets product tag
@@ -53,5 +60,12 @@ namespace Nop.Services.Catalog
         /// <param name="storeId">Store identifier</param>
         /// <returns>Number of products</returns>
         int GetProductCount(int productTagId, int storeId);
+
+        /// <summary>
+        /// Update product tags
+        /// </summary>
+        /// <param name="product">Product for update</param>
+        /// <param name="productTags">Product tags</param>
+        void UpdateProductTags(Product product, string[] productTags);
     }
 }

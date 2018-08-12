@@ -15,13 +15,14 @@ namespace Nop.Services.ExportImport
         public int ImageSquaresPictureId { get; set; }
         public string Name { get; set; }
         public decimal WeightAdjustment { get; set; }
+        public bool CustomerEntersQty { get; set; }
         public int Quantity { get; set; }
         public bool IsPreSelected { get; set; }
         public string ColorSquaresRgb { get; set; }
         public decimal PriceAdjustment { get; set; }
         public decimal Cost { get; set; }
         public int DisplayOrder { get; set; }
-
+        public bool PriceAdjustmentUsePercentage { get; set; }
         public static int ProducAttributeCellOffset = 2;
     }
 }

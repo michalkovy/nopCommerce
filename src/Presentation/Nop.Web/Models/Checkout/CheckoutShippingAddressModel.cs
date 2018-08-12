@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Nop.Web.Framework.Mvc;
+using Nop.Web.Framework.Models;
 using Nop.Web.Models.Common;
 
 namespace Nop.Web.Models.Checkout
@@ -10,14 +10,14 @@ namespace Nop.Web.Models.Checkout
         {
             Warnings = new List<string>();
             ExistingAddresses = new List<AddressModel>();
-            NewAddress = new AddressModel();
+            ShippingNewAddress = new AddressModel();
             PickupPoints = new List<CheckoutPickupPointModel>();
         }
-
+        
         public IList<string> Warnings { get; set; }
 
         public IList<AddressModel> ExistingAddresses { get; set; }
-        public AddressModel NewAddress { get; set; }
+        public AddressModel ShippingNewAddress { get; set; }
         public bool NewAddressPreselected { get; set; }
 
         public IList<CheckoutPickupPointModel> PickupPoints { get; set; }

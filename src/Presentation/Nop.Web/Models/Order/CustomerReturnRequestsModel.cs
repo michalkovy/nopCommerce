@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Nop.Web.Framework.Mvc;
+using Nop.Web.Framework.Models;
 
 namespace Nop.Web.Models.Order
 {
@@ -14,6 +14,7 @@ namespace Nop.Web.Models.Order
         public IList<ReturnRequestModel> Items { get; set; }
 
         #region Nested classes
+
         public partial class ReturnRequestModel : BaseNopEntityModel
         {
             public string CustomNumber { get; set; }
@@ -26,9 +27,11 @@ namespace Nop.Web.Models.Order
             public string ReturnReason { get; set; }
             public string ReturnAction { get; set; }
             public string Comments { get; set; }
+            public Guid UploadedFileGuid { get; set; }
 
             public DateTime CreatedOn { get; set; }
         }
+
         #endregion
     }
 }

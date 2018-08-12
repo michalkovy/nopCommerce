@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Nop.Core.Domain.Customers;
-using Nop.Core.Domain.Discounts;
 using Nop.Core.Domain.Orders;
+using Nop.Services.Discounts;
 
 namespace Nop.Services.Orders
 {
@@ -21,7 +21,7 @@ namespace Nop.Services.Orders
         /// <param name="subTotalWithDiscount">Sub total (with discount)</param>
         void GetShoppingCartSubTotal(IList<ShoppingCartItem> cart, 
             bool includingTax,
-            out decimal discountAmount, out List<Discount> appliedDiscounts,
+            out decimal discountAmount, out List<DiscountForCaching> appliedDiscounts,
             out decimal subTotalWithoutDiscount, out decimal subTotalWithDiscount);
 
         /// <summary>
@@ -36,13 +36,9 @@ namespace Nop.Services.Orders
         /// <param name="taxRates">Tax rates (of order sub total)</param>
         void GetShoppingCartSubTotal(IList<ShoppingCartItem> cart,
             bool includingTax,
-            out decimal discountAmount, out List<Discount> appliedDiscounts,
+            out decimal discountAmount, out List<DiscountForCaching> appliedDiscounts,
             out decimal subTotalWithoutDiscount, out decimal subTotalWithDiscount,
             out SortedDictionary<decimal, decimal> taxRates);
-
-
-
-
 
         /// <summary>
         /// Adjust shipping rate (free shipping, additional charges, discounts)
@@ -52,7 +48,7 @@ namespace Nop.Services.Orders
         /// <param name="appliedDiscounts">Applied discounts</param>
         /// <returns>Adjusted shipping rate</returns>
         decimal AdjustShippingRate(decimal shippingRate,
-            IList<ShoppingCartItem> cart, out List<Discount> appliedDiscounts);
+            IList<ShoppingCartItem> cart, out List<DiscountForCaching> appliedDiscounts);
         
         /// <summary>
         /// Gets shopping cart additional shipping charge
@@ -103,12 +99,7 @@ namespace Nop.Services.Orders
         /// <param name="appliedDiscounts">Applied discounts</param>
         /// <returns>Shipping total</returns>
         decimal? GetShoppingCartShippingTotal(IList<ShoppingCartItem> cart, bool includingTax,
-            out decimal taxRate, out List<Discount> appliedDiscounts);
-
-
-
-
-
+            out decimal taxRate, out List<DiscountForCaching> appliedDiscounts);
 
         /// <summary>
         /// Gets tax
@@ -128,18 +119,15 @@ namespace Nop.Services.Orders
         decimal GetTaxTotal(IList<ShoppingCartItem> cart, out SortedDictionary<decimal, decimal> taxRates, 
             bool usePaymentMethodAdditionalFee = true);
 
-
-
-
-
         /// <summary>
         /// Gets shopping cart total
         /// </summary>
         /// <param name="cart">Cart</param>
-        /// <param name="ignoreRewardPonts">A value indicating whether we should ignore reward points (if enabled and a customer is going to use them)</param>
+        /// <param name="useRewardPoints">A value indicating reward points should be used; null to detect current choice of the customer</param>
         /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use payment method additional fee when calculating order total</param>
-        decimal? GetShoppingCartTotal(IList<ShoppingCartItem> cart, bool ignoreRewardPonts = false, 
-            bool usePaymentMethodAdditionalFee = true);
+        /// <returns>Shopping cart total;Null if shopping cart total couldn't be calculated now</returns>
+        decimal? GetShoppingCartTotal(IList<ShoppingCartItem> cart,
+            bool? useRewardPoints = null, bool usePaymentMethodAdditionalFee = true);
 
         /// <summary>
         /// Gets shopping cart total
@@ -150,17 +138,14 @@ namespace Nop.Services.Orders
         /// <param name="appliedDiscounts">Applied discounts</param>
         /// <param name="redeemedRewardPoints">Reward points to redeem</param>
         /// <param name="redeemedRewardPointsAmount">Reward points amount in primary store currency to redeem</param>
-        /// <param name="ignoreRewardPonts">A value indicating whether we should ignore reward points (if enabled and a customer is going to use them)</param>
+        /// <param name="useRewardPoints">A value indicating reward points should be used; null to detect current choice of the customer</param>
         /// <param name="usePaymentMethodAdditionalFee">A value indicating whether we should use payment method additional fee when calculating order total</param>
         /// <returns>Shopping cart total;Null if shopping cart total couldn't be calculated now</returns>
         decimal? GetShoppingCartTotal(IList<ShoppingCartItem> cart,
-            out decimal discountAmount, out List<Discount> appliedDiscounts,
+            out decimal discountAmount, out List<DiscountForCaching> appliedDiscounts,
             out List<AppliedGiftCard> appliedGiftCards,
             out int redeemedRewardPoints, out decimal redeemedRewardPointsAmount,
-            bool ignoreRewardPonts = false, bool usePaymentMethodAdditionalFee = true);
-
-
-
+            bool? useRewardPoints = null, bool usePaymentMethodAdditionalFee = true);
 
         /// <summary>
         /// Update order totals
@@ -191,11 +176,19 @@ namespace Nop.Services.Orders
         bool CheckMinimumRewardPointsToUseRequirement(int rewardPoints);
 
         /// <summary>
+        /// Calculate how order total (maximum amount) for which reward points could be earned/reduced
+        /// </summary>
+        /// <param name="orderShippingInclTax">Order shipping (including tax)</param>
+        /// <param name="orderTotal">Order total</param>
+        /// <returns>Applicable order total</returns>
+        decimal CalculateApplicableOrderTotalForRewardPoints(decimal orderShippingInclTax, decimal orderTotal);
+
+        /// <summary>
         /// Calculate how much reward points will be earned/reduced based on certain amount spent
         /// </summary>
         /// <param name="customer">Customer</param>
         /// <param name="amount">Amount (in primary store currency)</param>
-        /// <returns>umber of reward points</returns>
+        /// <returns>Number of reward points</returns>
         int CalculateRewardPoints(Customer customer, decimal amount);
     }
 }

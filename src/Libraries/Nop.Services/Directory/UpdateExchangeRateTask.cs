@@ -7,16 +7,27 @@ namespace Nop.Services.Directory
     /// <summary>
     /// Represents a task for updating exchange rates
     /// </summary>
-    public partial class UpdateExchangeRateTask : ITask
+    public partial class UpdateExchangeRateTask : IScheduleTask
     {
-        private readonly ICurrencyService _currencyService;
-        private readonly CurrencySettings _currencySettings;
+        #region Fields
 
-        public UpdateExchangeRateTask(ICurrencyService currencyService, CurrencySettings currencySettings)
+        private readonly CurrencySettings _currencySettings;
+        private readonly ICurrencyService _currencyService;
+
+        #endregion
+
+        #region Ctor
+
+        public UpdateExchangeRateTask(CurrencySettings currencySettings,
+            ICurrencyService currencyService)
         {
-            this._currencyService = currencyService;
             this._currencySettings = currencySettings;
+            this._currencyService = currencyService;
         }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// Executes a task
@@ -31,14 +42,16 @@ namespace Nop.Services.Directory
 
             foreach (var exchageRate in exchangeRates)
             {
-                var currency = _currencyService.GetCurrencyByCode(exchageRate.CurrencyCode);
-                if (currency != null)
-                {
-                    currency.Rate = exchageRate.Rate;
-                    currency.UpdatedOnUtc = DateTime.UtcNow;
-                    _currencyService.UpdateCurrency(currency);
-                }
+                var currency = _currencyService.GetCurrencyByCode(exchageRate.CurrencyCode, false);
+                if (currency == null) 
+                    continue;
+
+                currency.Rate = exchageRate.Rate;
+                currency.UpdatedOnUtc = DateTime.UtcNow;
+                _currencyService.UpdateCurrency(currency);
             }
         }
+
+        #endregion
     }
 }

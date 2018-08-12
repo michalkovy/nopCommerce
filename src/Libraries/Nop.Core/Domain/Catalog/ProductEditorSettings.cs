@@ -1,8 +1,10 @@
-﻿
-using Nop.Core.Configuration;
+﻿using Nop.Core.Configuration;
 
 namespace Nop.Core.Domain.Catalog
 {
+    /// <summary>
+    /// Product editor settings
+    /// </summary>
     public class ProductEditorSettings : ISettings
     {
         /// <summary>
@@ -26,7 +28,7 @@ namespace Nop.Core.Domain.Catalog
         public bool ProductTemplate { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether 'Admin comment' feild is shown
+        /// Gets or sets a value indicating whether 'Admin comment' field is shown
         /// </summary>
         public bool AdminComment { get; set; }
 
@@ -79,21 +81,6 @@ namespace Nop.Core.Domain.Catalog
         /// Gets or sets a value indicating whether 'Product cost' field is shown
         /// </summary>
         public bool ProductCost { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether 'Special price' field is shown
-        /// </summary>
-        public bool SpecialPrice { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether 'Special price start date' field is shown
-        /// </summary>
-        public bool SpecialPriceStartDate { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether 'Special price end date' field is shown
-        /// </summary>
-        public bool SpecialPriceEndDate { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether 'Tier prices' field is shown
@@ -191,6 +178,11 @@ namespace Nop.Core.Domain.Catalog
         public bool TelecommunicationsBroadcastingElectronicServices { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether 'Product availability range' field is shown
+        /// </summary>
+        public bool ProductAvailabilityRange { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether 'Use multiple warehouses' field is shown
         /// </summary>
         public bool UseMultipleWarehouses { get; set; }
@@ -269,7 +261,6 @@ namespace Nop.Core.Domain.Catalog
         /// Gets or sets a value indicating whether 'Dimension' fields (height, length, width) are shown
         /// </summary>
         public bool Dimensions { get; set; }
-
 
         /// <summary>
         /// Gets or sets a value indicating whether 'Available start date' field is shown
@@ -350,5 +341,10 @@ namespace Nop.Core.Domain.Catalog
         /// Gets or sets a value indicating whether 'Manufacturers' field is shown
         /// </summary>
         public bool Manufacturers { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether 'Stock quantity history' tab is shown
+        /// </summary>
+        public bool StockQuantityHistory { get; set; }
     }
 }
