@@ -18,7 +18,7 @@ namespace Nop.Data
 
         public NopObjectContext(DbContextOptions<NopObjectContext> options) : base(options)
         {
-            ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = 3600; //60 minutes
+            //todo: ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = 3600; //60 minutes
         }
 
         #endregion

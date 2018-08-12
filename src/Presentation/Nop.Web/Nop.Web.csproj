@@ -45,6 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="App_Start\" />
     <Folder Include="Plugins\" />
   </ItemGroup>
 
